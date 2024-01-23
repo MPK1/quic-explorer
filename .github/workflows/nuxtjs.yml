@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: 'web'
+        working-directory: web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,13 +38,18 @@ jobs:
         id: set-package-manager
         run: |
           echo "manager=pnpm" >> $GITHUB_OUTPUT
-          echo "command=install --frozen-lockfile" >> $GITHUB_OUTPUT
+          echo "command=install" >> $GITHUB_OUTPUT
           exit 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.14.1
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "21"
           cache: ${{ steps.set-package-manager.outputs.manager }}
+          cache-dependency-path: web/pnpm-lock.yaml
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
@@ -69,7 +74,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./web/.output/public
 
   # Deployment job
   deploy:
