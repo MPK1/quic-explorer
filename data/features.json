@@ -1,0 +1,35 @@
+{
+    "$schema": "features.schema.json",
+    "items": [
+        {
+            "name": "Supported Congestion Control Algorithms",
+            "short_name": "CCA",
+            "description": "Which CCAs are supported by the QUIC library.",
+            "value_type": "array",
+            "value_meta": null,
+            "uuid": "39cb9235-1110-49f4-8750-4fbbbf1cb5c2",
+            "created_at": "2024-01-24T19:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "name": "QUIC v2 Support",
+            "short_name": "V2",
+            "description": "If the QUIC library supports QUICv2 (RFC9369).",
+            "value_type": "boolean",
+            "value_meta": null,
+            "uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
+            "created_at": "2024-01-24T19:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "name": "Multipath Support",
+            "short_name": "MP",
+            "description": "If the QUIC library supports the Multipath Extension.",
+            "value_type": "boolean",
+            "value_meta": null,
+            "uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
+            "created_at": "2024-01-24T19:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        }
+    ]
+}

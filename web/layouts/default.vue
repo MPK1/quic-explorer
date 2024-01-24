@@ -164,6 +164,11 @@ a {
   
 }
 
+@media (min-width: 1600px) {
+  .view {
+    max-width: 1400px;
+  }
+}
 
 @media (max-width: 860px) {
   .header .inner {

@@ -1,25 +1,10 @@
 <script setup lang="ts">
-import * as childProcess from 'child_process';
-
 const { data: renderDateTime } = useAsyncData('renderDateTime', async () => {
   const dateTime = new Date().toUTCString()
   return dateTime
 })
-
-const { data: commitHash } = useAsyncData('commitHash', async () => {
-    var commitHash = '';
-    try {
-        commitHash = childProcess
-        .execSync('git rev-parse --short HEAD')
-        .toString().trim();
-    } catch (e) {
-        console.error(e);
-    }   
-  return commitHash
-})
-
+const commitHash = useRuntimeConfig().gitCommitHash
 </script>
-
 <template>
-Version Information: Commit <code>{{ commitHash }}</code> rendered on {{ renderDateTime }}
+Version Information: Commit <a class="text-white" target="_blank" :href="'https://github.com/MPK1/quic-explorer/tree/' + commitHash"><code>{{ commitHash }}</code></a> rendered on {{ renderDateTime }}
 </template>

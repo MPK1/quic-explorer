@@ -2,7 +2,6 @@
 import type { Implementation, GithubRepo } from '~/types';
 
 import impls_json from '~/../data/implementations.json';
-import { _size } from '#tailwind-config/theme';
 
 const route = useRoute();
 const id = computed(() => route.params.id as string)
@@ -67,13 +66,13 @@ const links = [{
         </ul>
         <h2 class="text-xl my-2">Github Stats</h2>
         <ul class="meta" v-if="is_github_repo">
-          <UButton icon="i-mdi-star-outline" class="mr-2 cursor-default" color="gray">
+          <UButton icon="i-mdi-star-outline" class="mr-2 mb-2 cursor-default" color="gray">
             Stars <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : gh.stargazers_count }}</UBadge>
           </UButton>
-          <UButton icon="i-mdi-source-fork" class="mr-2 cursor-default" color="gray">
+          <UButton icon="i-mdi-source-fork" class="mr-2 mb-2 cursor-default" color="gray">
             Forks <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : gh.forks_count }}</UBadge>
           </UButton>
-          <UButton icon="i-mdi-calendar" class="cursor-default" color="gray">
+          <UButton icon="i-mdi-calendar" class="mr-2 mb-2 cursor-default" color="gray">
             Created <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : new Date(gh.created_at).toUTCString() }}</UBadge>
           </UButton>
         </ul>
@@ -81,7 +80,7 @@ const links = [{
         <template #footer>
           <ul class="meta">
             <li>
-              <span class="label">Entry created:</span> <UBadge  class="badge" color="gray" variant="solid">{{ created_at || '?' }}</UBadge> by <UBadge class="badge" color="gray" variant="solid">{{ impl.created_by.split('<')[0].trim() || '?' }}</UBadge>
+              <span class="label">Implementation added:</span> <UBadge  class="badge" color="gray" variant="solid">{{ created_at || '?' }}</UBadge> by <UBadge class="badge" color="gray" variant="solid">{{ impl.created_by.split('<')[0].trim() || '?' }}</UBadge>
             </li>
             <li v-if="updated_at && impl.updated_by">
               <span class="label">Last update:</span> <UBadge class="badge" color="gray" variant="solid">{{ updated_at || '?' }}</UBadge> by <UBadge class="badge" color="gray" variant="solid">{{ impl.updated_by.split('<')[0].trim() || '?' }}</UBadge>
@@ -123,7 +122,7 @@ const links = [{
   position: relative;
   max-width: 40%;
   min-height: 80px;
-  max-height: 100px;
+  max-height: 140px;
   top: 0;
   right: 0;
   clear: both;

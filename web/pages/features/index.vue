@@ -1,64 +1,59 @@
 <script setup lang="ts">
-import type { Implementation } from '~/types';
+import type { Feature } from '~/types';
 
-import data from '~/../data/implementations.json';
+import data from '~/../data/features.json';
 
 const route = useRoute()
 
-const implementations: Implementation[] = data.items;
+const features: Feature[] = data.items;
 
 const links = [{
   label: 'Home',
   icon: 'i-heroicons-home',
   to: '/'
 }, {
-  label: 'Implementations',
-  to: '/implementations'
+  label: 'Features',
+  to: '/features'
 }]
 
 const columns = [
   {
-    label: 'Name',
+    label: 'Key',
+    key: 'short_name',
+    sortable: true
+  },
+  {
+    label: 'Feature Name',
     key: 'name',
     sortable: true
   },
   {
-    label: 'Repository',
-    key: 'repo_url',
-    sortable: true
-  },
-  {
-    label: 'Maintainer',
-    key: 'maintainer',
-    sortable: true
-  },
-  {
-    label: 'Language',
-    key: 'language',
-    sortable: true
+    label: 'Description',
+    key: 'description',
+    sortable: false
   }
 ]
 
-function select (row: Implementation) {
-  return navigateTo('/implementations/' + row.uuid)
+function select (row: Feature) {
+  return navigateTo('/features/' + row.uuid)
 }
 
 const q = ref('')
 
 const filteredRows = computed(() => {
   if (!q.value) {
-    return implementations
+    return features
   }
 
-  return implementations.filter((i) => {
-    return Object.values(i).some((value) => {
+  return features.filter((f) => {
+    return Object.values(f).some((value) => {
       return String(value).toLowerCase().includes(q.value.toLowerCase())
     })
   })
 })
 
 useHead({
-  title: 'QUIC Explorer | Implementations'
+  title: 'QUIC Explorer | Features'
 })
 </script>
 
@@ -66,7 +61,7 @@ useHead({
   <div class="view">
     <UBreadcrumb :links="links" class="mb-4"/>
     <div class="flex justify-between px-3 py-3.5 border-b border-gray-200 dark:border-gray-700">
-      <h1 class="text-2xl font-semibold">Implementations</h1>
+      <h1 class="text-2xl font-semibold">Features</h1>
       <UInput class="" v-model="q" placeholder="Filter..." />
     </div>
     <UTable :columns="columns" :rows="filteredRows" @select="select" />

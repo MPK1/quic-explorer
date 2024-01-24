@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "items": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "implementation_uuid": {
+                        "type": "string"
+                    },
+                    "feature_uuid": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": ["string", "number", "integer", "boolean", "array", "object"]                   
+                    },
+                    "comment": {
+                        "type": ["null", "string"]
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "source_url": {
+                        "type": ["null", "string"]
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "updated_by": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "implementation_uuid",
+                    "feature_uuid",
+                    "value",
+                    "created_at",
+                    "created_by"                    
+                ]
+            }
+        }
+    }
+}
