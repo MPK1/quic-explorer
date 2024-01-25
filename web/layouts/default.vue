@@ -168,6 +168,12 @@ a {
   .view {
     max-width: 1400px;
   }
+  .header .inner {
+    max-width: 1200px;
+  }
+  .header .hdr-link-right {
+    margin-left: 4em;
+  }
 }
 
 @media (max-width: 860px) {
