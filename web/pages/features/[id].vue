@@ -20,8 +20,10 @@ relevant_entries.forEach(entry => {
   if (impl) {
     entry.implementation_name = impl.name;
   }
-  const last_update = entry.updated_at || entry.created_at;
-  entry.last_update = last_update.split('T')[0];
+
+  entry.last_update = (entry.updated_at || entry.created_at).split('T')[0];
+  entry.last_update_by = (entry.updated_by || entry.created_by).split('<')[0].trim();
+
   if (feat.value_type == 'boolean') {
     entry.value_pretty = entry.value ? '✅' : '❌';
   } else if (feat.value_type == 'array') {
@@ -144,6 +146,11 @@ const links = [{
               variant="outline"
               :to="row.source_url" target="_blank"
             />
+          </UTooltip>
+        </template>
+        <template #last_update-data="{ row }">
+          <UTooltip :text="'by ' + row.last_update_by" :popper="{ placement: 'right' }">
+            {{ row.last_update }}
           </UTooltip>
         </template>
         <template #value-data="{ row }">

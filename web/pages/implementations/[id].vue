@@ -64,15 +64,15 @@ const links = [{
             <span class="label">Language:</span> <UBadge color="gray" variant="solid">{{ impl.language || '-' }}</UBadge>
           </li>
         </ul>
-        <h2 class="text-xl my-2">Github Stats</h2>
+        <h2 class="text-xl my-2">Github Stats <span class="align-super text-xs">LIVE</span></h2>
         <ul class="meta" v-if="is_github_repo">
-          <UButton icon="i-mdi-star-outline" class="mr-2 mb-2 cursor-default" color="gray">
+          <UButton size="2xs" icon="i-mdi-star-outline" class="mr-2 mb-2 cursor-default" color="gray">
             Stars <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : gh.stargazers_count }}</UBadge>
           </UButton>
-          <UButton icon="i-mdi-source-fork" class="mr-2 mb-2 cursor-default" color="gray">
+          <UButton size="2xs" icon="i-mdi-source-fork" class="mr-2 mb-2 cursor-default" color="gray">
             Forks <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : gh.forks_count }}</UBadge>
           </UButton>
-          <UButton icon="i-mdi-calendar" class="mr-2 mb-2 cursor-default" color="gray">
+          <UButton size="2xs" icon="i-mdi-calendar" class="mr-2 mb-2 cursor-default" color="gray">
             Created <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : new Date(gh.created_at).toUTCString() }}</UBadge>
           </UButton>
         </ul>
