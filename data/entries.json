@@ -46,6 +46,15 @@
             "source_url": "https://github.com/cloudflare/quiche/blob/85ab56f0ff46944292b382e00b84b5a758928f72/quiche/include/quiche.h#L218-L223",
             "created_at": "2024-01-30T10:16:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "implementation_uuid": "07bc53dd-998d-4308-ab4f-3aebe56d3a68",
+            "feature_uuid": "39cb9235-1110-49f4-8750-4fbbbf1cb5c2",
+            "value": ["CUBIC", "BBRv1", "BBRv3", "COPA"],
+            "source": "Repo",
+            "source_url": "https://github.com/Tencent/tquic/blob/develop/README.md?plain=1#L19",
+            "created_at": "2024-01-30T10:45:00.000000Z",
+            "created_by": "Benedikt Spies <benedikt.spies@in.tum.de>"
         }
     ]
 }
