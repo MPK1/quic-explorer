@@ -43,5 +43,7 @@ export interface Entry {
 export interface GithubRepo {
     stargazers_count: number
     forks_count: number
+    contributors_count: number
     created_at: string
+    last_commit: string
 }

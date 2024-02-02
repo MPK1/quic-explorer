@@ -15,10 +15,33 @@ const updated_at = (impl && impl.updated_at) ? new Date(impl.updated_at).toUTCSt
 const is_github_repo: boolean = impl ? /github\.com/.test(impl.repo_url) : false;
 const repo_id = impl ? /[^/]*\/[^/]*$/.exec(impl.repo_url)?.[0] || "" : "";
 
-const { pending: gh_pending, data: gh } = useFetch<GithubRepo>('https://api.github.com/repos/' + repo_id, {
+const gh_pending_1 = ref(true);
+const gh_pending_2 = ref(true);
+const gh_pending = ref(gh_pending_1 || gh_pending_2);
+
+const { data: gh } = is_github_repo ? useFetch<GithubRepo>('https://api.github.com/repos/' + repo_id, {
   lazy: true,
-  server: false
-})
+  server: false,
+  onResponse({ response }) {
+    useFetch<GithubRepo>(response._data.commits_url.replace("{/sha}", "/" + response._data.default_branch), {
+      server: false,
+      onResponse({ response }) {
+        const last_commit_date = new Date(response._data.commit.committer.date);
+        if (gh.value) gh.value.last_commit = getRelativeTimeDiff(last_commit_date);
+        gh_pending_1.value = false;
+      },
+    });
+    useFetch<GithubRepo>(response._data.contributors_url + "?per_page=1", {
+      server: false,
+      onResponse({ response }) {
+        if (response.ok && response.headers.get('link')) {
+          if (gh.value) gh.value.contributors_count =  parseInt(response.headers.get('link').split(',').pop().split(';')[0].match(/.*page=(.*)>/)[1]);
+        }
+        gh_pending_2.value = false;
+      }
+    });
+  }
+}) : { data: ref(undefined) };
 
 useHead({
   title: impl
@@ -65,16 +88,12 @@ const links = [{
           </li>
         </ul>
         <h2 class="text-xl my-2">Github Stats <span class="align-super text-xs">LIVE</span></h2>
-        <ul class="meta" v-if="is_github_repo">
-          <UButton size="2xs" icon="i-mdi-star-outline" class="mr-2 mb-2 cursor-default" color="gray">
-            Stars <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : gh.stargazers_count }}</UBadge>
-          </UButton>
-          <UButton size="2xs" icon="i-mdi-source-fork" class="mr-2 mb-2 cursor-default" color="gray">
-            Forks <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : gh.forks_count }}</UBadge>
-          </UButton>
-          <UButton size="2xs" icon="i-mdi-calendar" class="mr-2 mb-2 cursor-default" color="gray">
-            Created <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{ gh_pending || !gh ? "?" : new Date(gh.created_at).toUTCString() }}</UBadge>
-          </UButton>
+        <ul class="meta flex flex-wrap" v-if="is_github_repo">
+          <GithubBadge label="Stars" icon="i-mdi-star-outline" :pending="gh_pending" :gh="gh" :value="gh?.stargazers_count" />
+          <GithubBadge label="Forks" icon="i-mdi-source-fork" :pending="gh_pending" :gh="gh" :value="gh?.forks_count" />
+          <GithubBadge label="Contributors" icon="i-mdi-account-multiple" :pending="gh_pending" :gh="gh" :value="gh?.contributors_count" />
+          <GithubBadge label="Last commit on default branch" icon="i-mdi-source-commit-end" :pending="gh_pending" :gh="gh" :value="gh?.last_commit" />
+          <GithubBadge label="Created" icon="i-mdi-calendar" :pending="gh_pending" :gh="gh" :value="gh ? new Date(gh.created_at).toUTCString(): ''" />
         </ul>
 
         <template #footer>
