@@ -102,7 +102,7 @@
         },
         {
             "name": "Quant",
-            "maintainer": "NTAP",
+            "maintainer": "NetApp",
             "language": "C",
             "repo_url": "https://github.com/NTAP/quant",
             "logo_url": "https://avatars.githubusercontent.com/u/3294899?v=4",

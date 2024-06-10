@@ -24,11 +24,21 @@
         {
             "name": "Multipath Support",
             "short_name": "MP",
-            "description": "If the QUIC library supports the Multipath Extension.",
+            "description": "If the QUIC library supports the multipath extension.",
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
             "created_at": "2024-01-24T19:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "name": "ACK Frequency Support",
+            "short_name": "ACKFREQ",
+            "description": "If the QUIC library supports the ACK frequency extension.",
+            "value_type": "boolean",
+            "value_meta": null,
+            "uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
+            "created_at": "2024-10-10T16:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         }
     ]

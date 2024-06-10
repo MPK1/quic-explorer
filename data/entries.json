@@ -55,6 +55,24 @@
             "source_url": "https://github.com/Tencent/tquic/blob/develop/README.md?plain=1#L19",
             "created_at": "2024-01-30T10:45:00.000000Z",
             "created_by": "Benedikt Spies <benedikt.spies@in.tum.de>"
+        },
+        {
+            "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
+            "feature_uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/microsoft/msquic/blob/1e2c1099dc66085219c6bcde935ced6e25ae4be7/README.md?plain=1#L28",
+            "created_at": "2024-06-10T16:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "implementation_uuid": "a6bad9d2-e0d8-4fcb-950c-2ca2f1dac7dc",
+            "feature_uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/litespeedtech/lsquic/blob/c4f359fcb087f306cbec7e09221a7815ca378f4f/README.md?plain=1#L41",
+            "created_at": "2024-06-10T16:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         }
     ]
 }
