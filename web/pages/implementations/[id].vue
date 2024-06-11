@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import type { Implementation, GithubRepo } from '~/types';
+import type { Implementation, Feature, Entry, GithubRepo } from '~/types';
 
 import impls_json from '~/../data/implementations.json';
+import features_json from '~/../data/features.json';
+import entries_json from '~/../data/entries.json';
 
 const route = useRoute();
 const id = computed(() => route.params.id as string)
@@ -42,6 +44,56 @@ const { data: gh } = is_github_repo ? useFetch<GithubRepo>('https://api.github.c
     });
   }
 }) : { data: ref(undefined) };
+
+const features: Feature[] = features_json.items;
+const entries: Entry[] = entries_json.items;
+const relevant_entries: Entry[] = entries.filter(item => item.implementation_uuid === id.value);
+
+const columns = [
+  {
+    label: 'Feature',
+    key: 'feature_name',
+    sortable: true,
+    class: "w-1/4"
+  },
+  {
+    label: 'Value',
+    key: 'value',
+    sortable: true
+  },
+  {
+    label: 'Last Updated',
+    key: 'last_update',
+    sortable: true,
+    class: "w-1/4"
+  },
+  {
+    label: 'Source',
+    key: 'source',
+    sortable: true,
+    class: "w-1"
+  }
+]
+
+relevant_entries.forEach(entry => {
+  const feat = features.find(item => item.uuid === entry.feature_uuid);
+  if (feat) {
+    entry.feature_name = feat.name;
+  }
+
+  entry.last_update = (entry.updated_at || entry.created_at).split('T')[0];
+  entry.last_update_by = (entry.updated_by || entry.created_by).split('<')[0].trim();
+
+  if (feat.value_type == 'boolean') {
+    entry.value_pretty = entry.value ? '✅' : '❌';
+  } else if (feat.value_type == 'array') {
+    entry.value_pretty = entry.value.join(', ');
+  } else if (feat.value_type == 'object') {
+    entry.value_pretty = JSON.stringify(entry.value, null, 2);
+  } else {
+    entry.value_pretty = entry.value;
+  }
+})
 
 useHead({
   title: impl
@@ -108,6 +160,53 @@ const links = [{
         </template>
       </UCard>
       
+      <template v-if="relevant_entries.length > 0">
+        <UCard class="mt-8">
+          <template #header>
+            <div class="flex justify-between">
+              <h1 class="text-2xl font-bold inline-block">Feature Information</h1>
+            </div>
+          </template>
+          <UTable :rows="relevant_entries" :columns="columns">
+          <template #feature_name-data="{ row }">
+            <NuxtLink :to="'/features/' + row.feature_uuid">{{ row.feature_name }}</NuxtLink>
+          </template>
+          <template #source-data="{ row }">
+            {{ row.source }}
+            <UTooltip :text="row.source_url" :popper="{ placement: 'left' }">
+              <UButton
+                v-if="row.source_url"
+                class="ml-2"
+                icon="i-mdi-link-variant"
+                size="2xs" color="gray"
+                variant="outline"
+                :to="row.source_url" target="_blank"
+              />
+            </UTooltip>
+          </template>
+          <template #last_update-data="{ row }">
+            <UTooltip :text="'by ' + row.last_update_by" :popper="{ placement: 'right' }">
+              {{ row.last_update }}
+            </UTooltip>
+          </template>
+          <template #value-data="{ row }">
+            <template v-if="row.comment">
+              <UPopover mode="hover">
+                <span>{{ row.value_pretty }}</span><UBadge class="badge ml-2" color="gray" variant="solid">Hover for more details</UBadge>
+                <template #panel>
+                  <div class="p-4">
+                    {{ row.comment }}
+                  </div>
+                </template>
+              </UPopover>
+            </template>
+            <template v-else>
+              {{ row.value_pretty }}
+            </template>
+          </template>
+          </UTable>
+        </UCard>
+      </template>
     </template>
     <template v-else>
       <h1 class="text-4xl font-bold inline-block">Implementation not found!</h1>

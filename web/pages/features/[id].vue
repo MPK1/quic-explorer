@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Feature, Entry } from '~/types';
+import type { Implementation, Feature, Entry } from '~/types';
 
 import features_json from '~/../data/features.json';
 import entries_json from '~/../data/entries.json';
