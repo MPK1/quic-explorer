@@ -22,6 +22,36 @@
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
         {
+            "name": "Greasing the QUIC Bit Support",
+            "short_name": "GREASE",
+            "description": "If the QUIC library supports RFC9287.",
+            "value_type": "boolean",
+            "value_meta": null,
+            "uuid": "9cde60c7-9a3d-4bbf-9dc4-3733c67713e2",
+            "created_at": "2024-07-03T12:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "name": "Datagram Extension Support",
+            "short_name": "DGRAM",
+            "description": "If the QUIC library supports the unrealiable datagram extension (RFC9221).",
+            "value_type": "boolean",
+            "value_meta": null,
+            "uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
+            "created_at": "2024-07-03T12:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "name": "HTTP/3 Integration",
+            "short_name": "H3",
+            "description": "If the QUIC library integrates HTTP/3 on top of QUIC (RFC9114).",
+            "value_type": "boolean",
+            "value_meta": null,
+            "uuid": "da6ba40d-3ae2-49b1-a772-876149a2f0ab",
+            "created_at": "2024-07-03T12:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
             "name": "Multipath Support",
             "short_name": "MP",
             "description": "If the QUIC library supports the multipath extension.",
@@ -39,6 +69,16 @@
             "value_meta": null,
             "uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
             "created_at": "2024-10-10T16:30:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "name": "Used TLS Libraries",
+            "short_name": "TLSLIB",
+            "description": "Which TLS libraries are used by the QUIC library.",
+            "value_type": "array",
+            "value_meta": null,
+            "uuid": "ad7d5635-1522-404a-a9cb-e87ccdaec4b8",
+            "created_at": "2024-07-03T12:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         }
     ]
