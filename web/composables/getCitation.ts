@@ -1,11 +1,13 @@
 export default function () {
   const today = new Date().toISOString().split('T')[0]
-  const citation = `@misc{quic-explorer,
+  const { data: commitHash } = useAsyncData('commitHash', async () => {
+    return useRuntimeConfig().gitCommitHash
+  })
+  return `@misc{quic-explorer,
     title = {{QUIC Explorer}},
     author = {Marcel Kempf}},
     url = {https://quic-explorer.net},
     howpublished = {\\url{https://quic-explorer.net}},
-    note = {Accessed: ` + today + `}
+    note = {Accessed: ` + today + ` (Commit `+ commitHash.value +`)}
   }`
-  return citation
 }

@@ -26,7 +26,7 @@ const citation = getCitation()
           <UPopover>
             <a rel="noopener banner">Cite</a>
             <template #panel>
-              <div class="h-48 w-96 p-4 text-black">
+              <div class="h-48 w-[28rem] p-4 text-black">
                 <UTextarea class="w-full h-full" :rows="7" v-model="citation"/>
               </div>
             </template>
