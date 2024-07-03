@@ -67,7 +67,7 @@ useHead({
     <UBreadcrumb :links="links" class="mb-4"/>
     <div class="flex justify-between px-3 py-3.5 border-b border-gray-200 dark:border-gray-700">
       <h1 class="text-2xl font-semibold">Implementations</h1>
-      <UInput class="" v-model="q" placeholder="Filter..." />
+      <UInput class="" v-model="q" placeholder="Search..." />
     </div>
     <UTable :columns="columns" :rows="filteredRows" @select="select" />
   </div>
