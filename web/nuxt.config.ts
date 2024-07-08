@@ -1,20 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import * as childProcess from 'child_process';
+import * as childProcess from "child_process";
 import type { Implementation, Feature } from "./types";
-import implementationsJson from '../data/implementations.json';
-import featuresJson from '../data/features.json';
+import implementationsJson from "../data/implementations.json";
+import featuresJson from "../data/features.json";
 
 const getGitCommitHash = () => {
-  var commitHash = '';
+  var commitHash = "";
   try {
-      commitHash = childProcess
-      .execSync('git rev-parse --short HEAD')
-      .toString().trim();
+    commitHash = childProcess
+      .execSync("git rev-parse --short HEAD")
+      .toString()
+      .trim();
   } catch (e) {
-      console.error(e);
-  }   
-  return commitHash
+    console.error(e);
+  }
+  return commitHash;
 };
 const gitCommitHash = getGitCommitHash();
 
@@ -29,18 +30,22 @@ const getAllRoutes = async () => {
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
-  ui: { icons: ['mdi'] },
-  colorMode: { preference: 'light' },
+  ui: { icons: ["mdi"] },
+  colorMode: { preference: "light" },
   runtimeConfig: {
-    gitCommitHash: gitCommitHash
+    gitCommitHash: gitCommitHash,
   },
   hooks: {
-    async 'nitro:config'(nitroConfig) {
+    async "nitro:config"(nitroConfig) {
       const slugs = await getAllRoutes();
-      if (nitroConfig && nitroConfig.prerender && nitroConfig.prerender.routes){
+      if (
+        nitroConfig &&
+        nitroConfig.prerender &&
+        nitroConfig.prerender.routes
+      ) {
         nitroConfig.prerender.routes.push(...slugs);
       }
     },
   },
-  modules: ["@nuxt/ui"]
-})
+  modules: ["@nuxt/ui"],
+});

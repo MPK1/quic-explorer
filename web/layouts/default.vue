@@ -1,25 +1,26 @@
 <script setup lang="ts">
-const route = useRoute()
-const host = process.server
-  ? useRequestHeaders().host
-  : window.location.host
+const route = useRoute();
+const host = process.server ? useRequestHeaders().host : window.location.host;
 
-const citation = getCitation()
+const citation = getCitation();
 
-  useHead({
+useHead({
   link: [
     // We use route.path since we don't use query parameters
-    { rel: 'canonical', href: `https://${host}${route.path}` }
-  ]
-})
+    { rel: "canonical", href: `https://${host}${route.path}` },
+  ],
+});
 </script>
 
 <template>
   <div>
     <header class="header">
       <nav class="inner" role="navigation">
-        <NuxtLink to="/" >
-          <img class="logo" src="/favicon.png" alt="logo"/><span class="logo-text">QUIC Explorer</span>
+        <NuxtLink to="/">
+          <img class="logo" src="/favicon.png" alt="logo" /><span
+            class="logo-text"
+            >QUIC Explorer</span
+          >
         </NuxtLink>
         <div class="spacer"></div>
         <span class="hdr-link-right">
@@ -27,14 +28,17 @@ const citation = getCitation()
             <a rel="noopener banner">Cite</a>
             <template #panel>
               <div class="h-48 w-[28rem] p-4 text-black">
-                <UTextarea class="w-full h-full" :rows="7" v-model="citation"/>
+                <UTextarea class="w-full h-full" :rows="7" v-model="citation" />
               </div>
             </template>
           </UPopover>
         </span>
         <span class="hdr-link-right">
-          <a href="https://github.com/MPK1/quic-explorer"
-            target="_blank" rel="noopener banner">
+          <a
+            href="https://github.com/MPK1/quic-explorer"
+            target="_blank"
+            rel="noopener banner"
+          >
             Open on GitHub
           </a>
         </span>
@@ -51,22 +55,23 @@ const citation = getCitation()
 
 <style lang="postcss">
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 15px;
-  background-color: #F4F4F5;
+  background-color: #f4f4f5;
   margin: 0;
   padding: 0;
-  color: #18181B;
+  color: #18181b;
   overflow-y: scroll;
   padding-bottom: 50px;
 }
 
 a {
-  color: #18181B;
+  color: #18181b;
   text-decoration: none;
 }
 .header {
-  background-color: #18181B;
+  background-color: #18181b;
   z-index: 999;
   height: 55px;
 
@@ -80,7 +85,7 @@ a {
   }
 
   .logo-text {
-    font-family: 'Varela Round', sans-serif;
+    font-family: "Varela Round", sans-serif;
     font-size: 1.2em;
     color: #fff;
     vertical-align: middle;
@@ -108,7 +113,7 @@ a {
       margin-right: 0;
     }
   }
-  .spacer{
+  .spacer {
     flex-grow: 1;
   }
   .hdr-link-right {
@@ -153,15 +158,14 @@ a {
   width: 100%;
   font-size: 9pt;
   bottom: 0;
-  background-color: #18181B;
-  color: #F4F4F5;
+  background-color: #18181b;
+  color: #f4f4f5;
   z-index: 999;
   padding: 0.3em 2em;
 
-  & .version{
+  & .version {
     float: right;
   }
-  
 }
 
 @media (min-width: 1600px) {
