@@ -43,17 +43,21 @@ function select(row: Feature) {
 
 const q = ref("");
 
-const filteredRows = computed(() => {
-  if (!q.value) {
-    return features;
-  }
-
-  return features.filter((f) => {
-    return Object.values(f).some((value) => {
-      return String(value).toLowerCase().includes(q.value.toLowerCase());
-    });
-  });
-});
+const filteredRows = computed(() =>
+  !q.value
+    ? features
+    : features
+        .map(({ name, short_name, description }) => ({
+          name,
+          short_name,
+          description,
+        }))
+        .filter((i) =>
+          Object.values(i).some((value) =>
+            String(value).toLowerCase().includes(q.value.toLowerCase()),
+          ),
+        ),
+);
 
 useHead({
   title: "QUIC Explorer | Features",
