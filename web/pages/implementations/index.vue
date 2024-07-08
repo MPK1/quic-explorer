@@ -45,17 +45,11 @@ function select (row: Implementation) {
 
 const q = ref('')
 
-const filteredRows = computed(() => {
-  if (!q.value) {
-    return implementations
-  }
-
-  return implementations.filter((i) => {
-    return Object.values(i).some((value) => {
-      return String(value).toLowerCase().includes(q.value.toLowerCase())
-    })
-  })
-})
+const filteredRows = computed(() =>
+  !q.value ? implementations : implementations
+    .map(({ name, maintainer, language, repo_url }) => ({ name, maintainer, language, repo_url }))
+    .filter(i => Object.values(i).some(value => String(value).toLowerCase().includes(q.value.toLowerCase())))
+);
 
 useHead({
   title: 'QUIC Explorer | Implementations'
