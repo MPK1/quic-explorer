@@ -39,9 +39,9 @@ jobs:
           echo "command=install" >> $GITHUB_OUTPUT
           exit 0
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8.14.1
+          version: 8.15.8
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -57,7 +57,7 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: nuxt
       - name: Restore cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             dist
