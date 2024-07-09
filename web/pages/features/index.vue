@@ -43,20 +43,19 @@ function select(row: Feature) {
 
 const q = ref("");
 
+const searchableAttributes = ["name", "short_name", "description"];
+
 const filteredRows = computed(() =>
   !q.value
     ? features
-    : features
-        .map(({ name, short_name, description }) => ({
-          name,
-          short_name,
-          description,
-        }))
-        .filter((i) =>
-          Object.values(i).some((value) =>
+    : features.filter((feature) =>
+        Object.entries(feature)
+          .filter(([key]) => searchableAttributes.includes(key))
+          .map(([, value]) => value)
+          .some((value) =>
             String(value).toLowerCase().includes(q.value.toLowerCase()),
           ),
-        ),
+      ),
 );
 
 useHead({
