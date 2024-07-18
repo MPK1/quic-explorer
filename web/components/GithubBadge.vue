@@ -16,7 +16,7 @@ defineProps<{
     <UButton
       size="2xs"
       :icon="icon"
-      class="mr-2 mb-2 cursor-default"
+      class="mr-2 mb-2 cursor-default hover:bg-gray"
       color="gray"
     >
       {{ label }}

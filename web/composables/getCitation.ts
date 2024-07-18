@@ -6,7 +6,7 @@ export default function () {
   return (
     `@misc{quic-explorer,
     title = {{QUIC Explorer}},
-    author = {Marcel Kempf}},
+    author = {Marcel Kempf},
     url = {https://quic-explorer.net},
     howpublished = {\\url{https://quic-explorer.net}},
     note = {Accessed: ` +

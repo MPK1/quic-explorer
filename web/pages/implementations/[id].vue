@@ -166,21 +166,23 @@ const links = [
         <ul class="meta">
           <li>
             <span class="label">Repository:</span>
-            <UBadge color="gray" variant="solid">{{
-              impl.repo_url || "-"
-            }}</UBadge>
+            <a :href="impl.repo_url" target="_blank">
+              <UBadge color="gray" variant="solid">
+                {{ impl.repo_url || "-" }}
+              </UBadge>
+            </a>
           </li>
           <li>
             <span class="label">Maintainer:</span>
-            <UBadge color="gray" variant="solid">{{
-              impl.maintainer || "-"
-            }}</UBadge>
+            <UBadge color="gray" variant="solid">
+              {{ impl.maintainer || "-" }}
+            </UBadge>
           </li>
           <li>
             <span class="label">Language:</span>
-            <UBadge color="gray" variant="solid">{{
-              impl.language || "-"
-            }}</UBadge>
+            <UBadge color="gray" variant="solid">
+              {{ impl.language || "-" }}
+            </UBadge>
           </li>
         </ul>
         <h2 class="text-xl my-2">
@@ -227,7 +229,7 @@ const links = [
         <template #footer>
           <ul class="meta">
             <li>
-              <span class="label">Implementation added:</span>
+              <span class="label pr-1">Implementation added:</span>
               <UBadge class="badge" color="gray" variant="solid">{{
                 created_at || "?"
               }}</UBadge>

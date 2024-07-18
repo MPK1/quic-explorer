@@ -16,14 +16,20 @@ useHead({
   <div>
     <header class="header">
       <nav class="inner" role="navigation">
-        <NuxtLink to="/">
-          <img class="logo" src="/favicon.png" alt="logo" /><span
-            class="logo-text"
-            >QUIC Explorer</span
-          >
+        <NuxtLink to="/" class="shrink-0">
+          <img class="logo" src="/favicon.png" alt="logo" />
+          <span class="logo-text hidden sm:inline">QUIC Explorer</span>
         </NuxtLink>
+
         <div class="spacer"></div>
+
         <span class="hdr-link-right">
+          <a href="/implementations">Implementations</a>
+        </span>
+        <span class="hdr-link-right hidden md:inline">
+          <a href="/features">Features</a>
+        </span>
+        <span class="hdr-link-right hidden md:inline">
           <UPopover>
             <a rel="noopener banner">Cite</a>
             <template #panel>
@@ -87,6 +93,7 @@ a {
   .logo-text {
     font-family: "Varela Round", sans-serif;
     font-size: 1.2em;
+    white-space: nowrap;
     color: #fff;
     vertical-align: middle;
   }
@@ -119,8 +126,9 @@ a {
   .hdr-link-right {
     color: #fff;
     font-size: 0.9em;
+    white-space: nowrap;
     margin: auto;
-    margin-left: 2em;
+    margin-left: 1em;
     text-align: right;
     & a {
       margin-right: 0;
@@ -165,6 +173,12 @@ a {
 
   & .version {
     float: right;
+  }
+}
+
+@media (min-width: 1000px) {
+  .header .hdr-link-right {
+    margin-left: 2em;
   }
 }
 
