@@ -87,6 +87,15 @@
             "source_url": "https://github.com/litespeedtech/lsquic/blob/c4f359fcb087f306cbec7e09221a7815ca378f4f/README.md?plain=1#L41",
             "created_at": "2024-06-10T16:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
+            "feature_uuid": "9cde60c7-9a3d-4bbf-9dc4-3733c67713e2",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/microsoft/msquic/blob/9e82bf8c4115d3ee8d1a9534b285d33ab7596a89/README.md?plain=1#L24C1-L24C118",
+            "created_at": "2024-07-19T13:08:56.982647+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         }
     ]
 }
