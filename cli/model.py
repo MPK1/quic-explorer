@@ -94,6 +94,12 @@ class QUICInfo(QUICObject):
     def filename(cls):
         return "entries.json"
 
+def get_all_data():
+    return (
+        QUICImplementation._data["items"],
+        QUICFeature._data["items"],
+        QUICInfo._data["items"]
+    )
 
 models = [
     QUICImplementation,

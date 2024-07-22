@@ -11,9 +11,8 @@ except subprocess.CalledProcessError:
     username, email = "Anonymous", "anonymous@example.com"
 
 user = f"{username} <{email}>"
-    
-implementations = model.QUICImplementation._data["items"]
-features = model.QUICFeature._data["items"]
+
+implementations, features, entries = model.get_all_data()
 
 print("\nUse this tool to add a new info entry to the database.")
 print("\nStep 1 - Select the implementation for which you want to add information:")
@@ -44,7 +43,7 @@ except:
 
 print(f"\nYou have selected: {selected_feature['name']}")
 
-exists = len([i for i in model.QUICInfo._data["items"] if i["implementation_uuid"] == selected_implementation["uuid"] and i["feature_uuid"] == selected_feature["uuid"]]) > 0
+exists = len([i for i in entries if i["implementation_uuid"] == selected_implementation["uuid"] and i["feature_uuid"] == selected_feature["uuid"]]) > 0
 if exists:
     overwrite = input("\nATTENTION: An entry for this implementation and feature already exists. It will be overwritten. Do you want to continue? [Y/n]")
     if (overwrite.lower() == "n"):
