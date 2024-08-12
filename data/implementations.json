@@ -179,6 +179,15 @@
             "uuid": "15573794-5548-4fcd-bf4b-0f5ee00b2475",
             "created_at": "2024-07-19T15:22:56.982647+00:00",
             "created_by": "Tilmann Zäschke <tilmann.zaeschke@inf.ethz.ch>"
+        },
+        {
+            "name": "QUIC kernel module",
+            "maintainer": "Xin Long",
+            "language": "C",
+            "repo_url": "https://github.com/lxin/quic",
+            "uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
+            "created_at": "2024-08-12T16:30:00.000000+00:00",
+            "created_by": "Moritz Buhl <quic@moritzbuhl.de>"
         }
     ]
 }
