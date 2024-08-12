@@ -125,6 +125,54 @@
             "source_url": "https://github.com/ptrd/kwik/blob/6d7d8808972b3c8e37582a38382a8b65f71d8c1f/readme.md#L297-L298",
             "created_at": "2024-07-19T15:22:56.982647+00:00",
             "created_by": "Tilmann Zäschke <tilmann.zaeschke@inf.ethz.ch>"
+        },
+        {
+            "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
+            "feature_uuid": "39cb9235-1110-49f4-8750-4fbbbf1cb5c2",
+            "value": [
+                "Reno",
+                "CUBIC"
+            ],
+            "source": "Repo",
+            "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L127-L128",
+            "created_at": "2024-08-12T23:43:41.423923+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
+            "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L88",
+            "created_at": "2024-08-12T23:44:08.290543+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
+            "feature_uuid": "9cde60c7-9a3d-4bbf-9dc4-3733c67713e2",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L93",
+            "created_at": "2024-08-12T23:44:25.866690+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
+            "feature_uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L41",
+            "created_at": "2024-08-12T23:45:02.922214+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
+            "feature_uuid": "da6ba40d-3ae2-49b1-a772-876149a2f0ab",
+            "value": false,
+            "source": "Repo",
+            "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/tests/http3_test.c#L1",
+            "created_at": "2024-08-12T23:45:40.452450+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
         }
     ]
 }
