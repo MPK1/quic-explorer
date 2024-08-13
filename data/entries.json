@@ -173,6 +173,48 @@
             "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/tests/http3_test.c#L1",
             "created_at": "2024-08-12T23:45:40.452450+00:00",
             "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
+            "feature_uuid": "39cb9235-1110-49f4-8750-4fbbbf1cb5c2",
+            "value": [
+                "CUBIC",
+                "BBRv1"
+            ],
+            "source": "Repo",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/core/congestion_control.h#L162-L163",
+            "created_at": "2024-08-13T16:03:21.094454+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
+            "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/inc/quic_versions.h#L54",
+            "created_at": "2024-08-13T16:04:15.993451+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
+            "feature_uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/core/datagram.c",
+            "created_at": "2024-08-13T16:05:10.297509+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
+            "feature_uuid": "ad7d5635-1522-404a-a9cb-e87ccdaec4b8",
+            "value": [
+                "OpenSSL",
+                "Schannel"
+            ],
+            "source": "Repo",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/platform/CMakeLists.txt#L39-L55",
+            "created_at": "2024-08-13T16:09:34.701016+00:00",
+            "created_by": "mbuhl <quic@moritzbuhl.de>"
         }
     ]
 }
