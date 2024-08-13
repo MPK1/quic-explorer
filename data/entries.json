@@ -208,7 +208,7 @@
             "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
             "feature_uuid": "ad7d5635-1522-404a-a9cb-e87ccdaec4b8",
             "value": [
-                "OpenSSL",
+                "quictls",
                 "Schannel"
             ],
             "source": "Repo",
