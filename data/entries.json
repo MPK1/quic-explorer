@@ -182,7 +182,7 @@
                 "BBRv1"
             ],
             "source": "Repo",
-            "source_url": "https://github.com/microsoft/msquic/blob/main/src/core/congestion_control.h#L162-L163",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/core/congestion_control.h#L162-L163",
             "created_at": "2024-08-13T16:03:21.094454+00:00",
             "created_by": "mbuhl <quic@moritzbuhl.de>"
         },
@@ -191,7 +191,7 @@
             "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
             "value": true,
             "source": "Repo",
-            "source_url": "https://github.com/microsoft/msquic/blob/main/src/inc/quic_versions.h#L54",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/inc/quic_versions.h#L54",
             "created_at": "2024-08-13T16:04:15.993451+00:00",
             "created_by": "mbuhl <quic@moritzbuhl.de>"
         },
@@ -200,7 +200,7 @@
             "feature_uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
             "value": true,
             "source": "Repo",
-            "source_url": "https://github.com/microsoft/msquic/blob/main/src/core/datagram.c",
+            "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/core/datagram.c",
             "created_at": "2024-08-13T16:05:10.297509+00:00",
             "created_by": "mbuhl <quic@moritzbuhl.de>"
         },
