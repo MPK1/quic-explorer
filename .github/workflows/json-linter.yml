@@ -24,3 +24,12 @@ jobs:
           FILTER_REGEX_INCLUDE: .*data/.*
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint Source URLs
+        run: >-
+          for url in $(jq .items[].source_url < data/entries.json); do
+            echo $url | grep -q blob && (echo $url | sed -nr \
+              's,^"https://github.com/[^\/]*/[^\/]*/blob/([^/]*)/.+$,\1,p' |
+              grep -q '[0-9a-f]\{40\}' || (echo \
+              "Error: $url does not contain a commit hash." && exit 1));
+          done
