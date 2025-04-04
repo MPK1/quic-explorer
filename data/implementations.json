@@ -181,7 +181,7 @@
             "created_by": "Tilmann Zäschke <tilmann.zaeschke@inf.ethz.ch>"
         },
         {
-            "name": "QUIC kernel module",
+            "name": "linuxquic",
             "maintainer": "Xin Long",
             "language": "C",
             "repo_url": "https://github.com/lxin/quic",
