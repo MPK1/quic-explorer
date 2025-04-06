@@ -4,7 +4,7 @@
         {
             "implementation_uuid": "a6bad9d2-e0d8-4fcb-950c-2ca2f1dac7dc",
             "feature_uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
-            "value": false,
+            "value": "false",
             "source": "Repo",
             "source_url": "https://github.com/litespeedtech/lsquic",
             "created_at": "2024-01-24T20:00:00.000000+00:00",
@@ -13,7 +13,7 @@
         {
             "implementation_uuid": "e9e00650-746d-48de-bf06-9ffee0d97f5d",
             "feature_uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/private-octopus/picoquic/blob/13a9433ede001cd91700912df4a2aec5a54b2123/README.md?plain=1#L32",
             "created_at": "2024-01-24T20:00:00.000000+00:00",
@@ -22,7 +22,7 @@
         {
             "implementation_uuid": "94fb975a-d0b0-489c-bfe2-10aca68059bc",
             "feature_uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
-            "value": true,
+            "value": "true",
             "comment": "Only the fork under https://github.com/qdeconinck/quiche/tree/multipath supports multipath.",
             "source": "Repo",
             "source_url": "https://github.com/qdeconinck/quiche/tree/multipath",
@@ -73,7 +73,7 @@
         {
             "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
             "feature_uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/microsoft/msquic/blob/1e2c1099dc66085219c6bcde935ced6e25ae4be7/README.md?plain=1#L28",
             "created_at": "2024-06-10T16:30:00.000000+00:00",
@@ -82,7 +82,7 @@
         {
             "implementation_uuid": "a6bad9d2-e0d8-4fcb-950c-2ca2f1dac7dc",
             "feature_uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/litespeedtech/lsquic/blob/c4f359fcb087f306cbec7e09221a7815ca378f4f/README.md?plain=1#L41",
             "created_at": "2024-06-10T16:30:00.000000+00:00",
@@ -91,7 +91,7 @@
         {
             "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
             "feature_uuid": "9cde60c7-9a3d-4bbf-9dc4-3733c67713e2",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/microsoft/msquic/blob/9e82bf8c4115d3ee8d1a9534b285d33ab7596a89/README.md?plain=1#L24C1-L24C118",
             "created_at": "2024-07-19T13:08:56.982647+00:00",
@@ -111,7 +111,7 @@
         {
             "implementation_uuid": "15573794-5548-4fcd-bf4b-0f5ee00b2475",
             "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/ptrd/kwik/blob/6d7d8808972b3c8e37582a38382a8b65f71d8c1f/readme.md#L56",
             "created_at": "2024-07-19T15:22:56.982647+00:00",
@@ -120,7 +120,7 @@
         {
             "implementation_uuid": "15573794-5548-4fcd-bf4b-0f5ee00b2475",
             "feature_uuid": "da6ba40d-3ae2-49b1-a772-876149a2f0ab",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/ptrd/kwik/blob/6d7d8808972b3c8e37582a38382a8b65f71d8c1f/readme.md#L297-L298",
             "created_at": "2024-07-19T15:22:56.982647+00:00",
@@ -141,7 +141,7 @@
         {
             "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
             "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L88",
             "created_at": "2024-08-12T23:44:08.290543+00:00",
@@ -150,7 +150,7 @@
         {
             "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
             "feature_uuid": "9cde60c7-9a3d-4bbf-9dc4-3733c67713e2",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L93",
             "created_at": "2024-08-12T23:44:25.866690+00:00",
@@ -159,7 +159,7 @@
         {
             "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
             "feature_uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/modules/include/uapi/linux/quic.h#L41",
             "created_at": "2024-08-12T23:45:02.922214+00:00",
@@ -168,7 +168,7 @@
         {
             "implementation_uuid": "bbd00f57-a1cb-428b-8155-dc9ca89da6a3",
             "feature_uuid": "da6ba40d-3ae2-49b1-a772-876149a2f0ab",
-            "value": false,
+            "value": "false",
             "source": "Repo",
             "source_url": "https://github.com/lxin/quic/blob/01e3a6b33a4f6f179fb649a411dcea531c2645b1/tests/http3_test.c#L1",
             "created_at": "2024-08-12T23:45:40.452450+00:00",
@@ -189,7 +189,7 @@
         {
             "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
             "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/inc/quic_versions.h#L54",
             "created_at": "2024-08-13T16:04:15.993451+00:00",
@@ -198,7 +198,7 @@
         {
             "implementation_uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
             "feature_uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
-            "value": true,
+            "value": "true",
             "source": "Repo",
             "source_url": "https://github.com/microsoft/msquic/blob/b01cef94f89f8542cb22b994925513ccc6b360f8/src/core/datagram.c",
             "created_at": "2024-08-13T16:05:10.297509+00:00",
