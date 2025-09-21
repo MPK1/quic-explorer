@@ -226,6 +226,27 @@
             "source_url": "https://github.com/lxin/quic/blob/7cbc861207e2d0e8fadf918b70e2044a1038b667/libquic/Makefile.am#L8",
             "created_at": "2025-04-04T15:00:00.000000+00:00",
             "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "07bc53dd-998d-4308-ab4f-3aebe56d3a68",
+            "feature_uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/Tencent/tquic/blob/04e656cb68100caad9cdd1ad1e31b10be6799b07/README.md?plain=1#L21",
+            "created_at": "2025-06-15T19:38:59.943886+00:00",
+            "created_by": "Leopold Jofer <mail@leoj.de>"
+        },
+        {
+            "implementation_uuid": "07bc53dd-998d-4308-ab4f-3aebe56d3a68",
+            "feature_uuid": "ad7d5635-1522-404a-a9cb-e87ccdaec4b8",
+            "value": [
+                "BoringSSL",
+                "Rustls"
+            ],
+            "source": "Docs",
+            "source_url": "https://tquic.net/docs/how_to_contribute/development_guides#layout-of-the-tquic-implementation",
+            "created_at": "2025-06-15T20:53:20.139051+00:00",
+            "created_by": "Leopold Jofer <mail@leoj.de>"
         }
     ]
 }
