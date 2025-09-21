@@ -226,6 +226,15 @@
             "source_url": "https://github.com/lxin/quic/blob/7cbc861207e2d0e8fadf918b70e2044a1038b667/libquic/Makefile.am#L8",
             "created_at": "2025-04-04T15:00:00.000000+00:00",
             "created_by": "mbuhl <quic@moritzbuhl.de>"
+        },
+        {
+            "implementation_uuid": "20a6c114-119a-42e0-aee3-0607802c0c3c",
+            "feature_uuid": "2c37630b-15f9-41a8-89d2-095518024deb",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/mozilla/neqo/blob/b3d8f0d21db5657ebafb14f9b60c8892d2eb3aa9/neqo-transport/src/connection/mod.rs#L500",
+            "created_at": "2025-09-21T13:10:38.576089+00:00",
+            "created_by": "LeopoldLabs <mail@leoj.de>"
         }
     ]
 }
