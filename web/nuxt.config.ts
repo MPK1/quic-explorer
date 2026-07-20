@@ -32,9 +32,11 @@ export default defineNuxtConfig({
   ssr: true,
   ui: { icons: ["mdi"] },
   colorMode: { preference: "light" },
+
   runtimeConfig: {
     gitCommitHash: gitCommitHash,
   },
+
   hooks: {
     async "nitro:config"(nitroConfig) {
       const slugs = await getAllRoutes();
@@ -47,5 +49,7 @@ export default defineNuxtConfig({
       }
     },
   },
+
   modules: ["@nuxt/ui"],
+  compatibilityDate: "2026-07-20"
 });
