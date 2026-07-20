@@ -1,8 +1,6 @@
 export default function () {
   const today = new Date().toISOString().split("T")[0];
-  const { data: commitHash } = useAsyncData("commitHash", async () => {
-    return useRuntimeConfig().gitCommitHash;
-  });
+  const { data: commitHash } = useCommitHash();
   return (
     `@misc{quic-explorer,
     title = {{QUIC Explorer}},

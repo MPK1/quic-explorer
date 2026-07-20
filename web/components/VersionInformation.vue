@@ -3,9 +3,7 @@ const { data: renderDateTime } = useAsyncData("renderDateTime", async () => {
   const dateTime = new Date().toUTCString();
   return dateTime;
 });
-const { data: commitHash } = useAsyncData("commitHash", async () => {
-  return useRuntimeConfig().gitCommitHash;
-});
+const { data: commitHash } = useCommitHash();
 </script>
 <template>
   Version Information: Commit
