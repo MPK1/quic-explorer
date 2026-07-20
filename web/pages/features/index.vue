@@ -45,22 +45,7 @@ function select(row: Feature) {
   return navigateTo("/features/" + row.uuid);
 }
 
-const q = ref("");
-
 const searchableAttributes = ["name", "short_name", "description"];
-
-const filteredRows = computed(() =>
-  !q.value
-    ? features
-    : features.filter((feature) =>
-        Object.entries(feature)
-          .filter(([key]) => searchableAttributes.includes(key))
-          .map(([, value]) => value)
-          .some((value) =>
-            String(value).toLowerCase().includes(q.value.toLowerCase()),
-          ),
-      ),
-);
 
 useHead({
   title: "QUIC Explorer | Features",
@@ -70,20 +55,20 @@ useHead({
 <template>
   <div class="view">
     <UBreadcrumb :links="links" class="mb-4" />
-    <div
-      class="flex justify-between px-3 py-3.5 border-b border-gray-200 dark:border-gray-700"
+    <FilterableTable
+      title="Features"
+      :columns="columns"
+      :rows="features"
+      :searchable-attributes="searchableAttributes"
+      :select="select"
     >
-      <h1 class="text-2xl font-semibold">Features</h1>
-      <UInput class="" v-model="q" placeholder="Search..." />
-    </div>
-    <UTable :columns="columns" :rows="filteredRows" @select="select">
       <template #short_name-data="{ row }">
         <span class="font-mono">{{ row.short_name }}</span>
       </template>
       <template #value_type-data="{ row }">
         <span class="font-mono">{{ row.value_type }}</span>
       </template>
-    </UTable>
+    </FilterableTable>
   </div>
 </template>
 

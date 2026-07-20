@@ -230,23 +230,23 @@ const links = [
           <ul class="meta">
             <li>
               <span class="label pr-1">Implementation added:</span>
-              <UBadge class="badge" color="gray" variant="solid">{{
-                created_at || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ created_at || "?" }}
+              </UBadge>
               by
-              <UBadge class="badge" color="gray" variant="solid">{{
-                impl.created_by.split("<")[0].trim() || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ impl.created_by.split("<")[0].trim() || "?" }}
+              </UBadge>
             </li>
             <li v-if="updated_at && impl.updated_by">
               <span class="label">Last update:</span>
-              <UBadge class="badge" color="gray" variant="solid">{{
-                updated_at || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ updated_at || "?" }}
+              </UBadge>
               by
-              <UBadge class="badge" color="gray" variant="solid">{{
-                impl.updated_by.split("<")[0].trim() || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ impl.updated_by.split("<")[0].trim() || "?" }}
+              </UBadge>
             </li>
           </ul>
         </template>
@@ -263,9 +263,9 @@ const links = [
           </template>
           <UTable :rows="relevant_entries" :columns="columns">
             <template #feature_name-data="{ row }">
-              <NuxtLink :to="'/features/' + row.feature_uuid">{{
-                row.feature_name
-              }}</NuxtLink>
+              <NuxtLink :to="'/features/' + row.feature_uuid">
+                {{ row.feature_name }}
+              </NuxtLink>
             </template>
             <template #source-data="{ row }">
               {{ row.source }}

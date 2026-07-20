@@ -108,25 +108,27 @@ const links = [
         <ul class="meta">
           <li>
             <span class="label">Long Name:</span>
-            <UBadge color="gray" variant="solid">{{ feat.name || "-" }}</UBadge>
+            <UBadge color="gray" variant="solid">
+              {{ feat.name || "-" }}
+            </UBadge>
           </li>
           <li>
             <span class="label">Short Name:</span>
-            <UBadge color="gray" variant="solid">{{
-              feat.short_name || "-"
-            }}</UBadge>
+            <UBadge color="gray" variant="solid">
+              {{ feat.short_name || "-" }}
+            </UBadge>
           </li>
           <li>
             <span class="label">Description:</span>
-            <UBadge color="gray" variant="solid">{{
-              feat.description || "-"
-            }}</UBadge>
+            <UBadge color="gray" variant="solid">
+              {{ feat.description || "-" }}
+            </UBadge>
           </li>
           <li>
             <span class="label">Value Type:</span>
-            <UBadge color="gray" variant="solid">{{
-              feat.value_type || "-"
-            }}</UBadge>
+            <UBadge color="gray" variant="solid">
+              {{ feat.value_type || "-" }}
+            </UBadge>
           </li>
           <li>
             <span class="label" v-if="feat.value_meta">Value Meta:</span>
@@ -141,24 +143,24 @@ const links = [
         <template #footer>
           <ul class="meta">
             <li>
-              <span class="label">Feature created:</span>
-              <UBadge class="badge" color="gray" variant="solid">{{
-                created_at || "?"
-              }}</UBadge>
+              <span class="label pr-1">Feature created:</span>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ created_at || "?" }}
+              </UBadge>
               by
-              <UBadge class="badge" color="gray" variant="solid">{{
-                feat.created_by.split("<")[0].trim() || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ feat.created_by.split("<")[0].trim() || "?" }}
+              </UBadge>
             </li>
             <li v-if="updated_at && feat.updated_by">
               <span class="label">Last update:</span>
-              <UBadge class="badge" color="gray" variant="solid">{{
-                updated_at || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ updated_at || "?" }}
+              </UBadge>
               by
-              <UBadge class="badge" color="gray" variant="solid">{{
-                feat.updated_by.split("<")[0].trim() || "?"
-              }}</UBadge>
+              <UBadge class="badge" color="gray" variant="solid">
+                {{ feat.updated_by.split("<")[0].trim() || "?" }}
+              </UBadge>
             </li>
           </ul>
         </template>
@@ -172,9 +174,9 @@ const links = [
         </template>
         <UTable :rows="relevant_entries" :columns="columns">
           <template #implementation_name-data="{ row }">
-            <NuxtLink :to="'/implementations/' + row.implementation_uuid">{{
-              row.implementation_name
-            }}</NuxtLink>
+            <NuxtLink :to="'/implementations/' + row.implementation_uuid">
+              {{ row.implementation_name }}
+            </NuxtLink>
           </template>
           <template #source-data="{ row }">
             {{ row.source }}
