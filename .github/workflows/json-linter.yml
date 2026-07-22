@@ -16,6 +16,17 @@ jobs:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: pip install -r cli/requirements.txt
+
+      - name: Validate data schemas & referential integrity
+        run: python cli/validate_data.py
+
       - name: Lint JSON Files
         uses: github/super-linter@v5
         env:

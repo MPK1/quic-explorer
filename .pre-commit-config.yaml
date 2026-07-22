@@ -1,0 +1,13 @@
+# Pre-commit hooks for QUIC Explorer.
+# Setup (once):  pip install pre-commit && pre-commit install
+# Run manually:  pre-commit run --all-files
+repos:
+  - repo: local
+    hooks:
+      - id: validate-data
+        name: Validate QUIC dataset (schema + referential integrity)
+        entry: python cli/validate_data.py
+        language: python
+        additional_dependencies: ["jsonschema>=4"]
+        files: ^data/.*\.json$
+        pass_filenames: false
