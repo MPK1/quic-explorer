@@ -3,6 +3,7 @@ const route = useRoute();
 const host = process.server ? useRequestHeaders().host : window.location.host;
 
 const citation = getCitation();
+const isFullscreen = useState<boolean>("matrix-fullscreen", () => false);
 
 useHead({
   link: [
@@ -14,7 +15,7 @@ useHead({
 
 <template>
   <div>
-    <header class="header">
+    <header v-if="!isFullscreen" class="header">
       <nav class="inner" role="navigation">
         <NuxtLink to="/" class="shrink-0">
           <img class="logo" src="/favicon.png" alt="logo" />
@@ -28,6 +29,9 @@ useHead({
         </span>
         <span class="hdr-link-right hidden md:inline">
           <a href="/features">Features</a>
+        </span>
+        <span class="hdr-link-right hidden md:inline">
+          <a href="/matrix">Matrix</a>
         </span>
         <span class="hdr-link-right hidden md:inline">
           <UPopover>
@@ -51,7 +55,7 @@ useHead({
       </nav>
     </header>
     <slot role="main" />
-    <footer class="footer">
+    <footer v-if="!isFullscreen" class="footer">
       <div class="version">
         <VersionInformation />
       </div>
