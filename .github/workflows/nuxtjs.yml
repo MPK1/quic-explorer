@@ -31,23 +31,11 @@ jobs:
         working-directory: web
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set package manager
-        id: set-package-manager
-        run: |
-          echo "manager=pnpm" >> $GITHUB_OUTPUT
-          echo "command=install" >> $GITHUB_OUTPUT
-          exit 0
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: actions/checkout@v5
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          version: 8.15.8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "21"
-          cache: ${{ steps.set-package-manager.outputs.manager }}
-          cache-dependency-path: web/pnpm-lock.yaml
+          bun-version: "1.3.2"
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
@@ -66,9 +54,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
-        run: ${{ steps.set-package-manager.outputs.manager }} ${{ steps.set-package-manager.outputs.command }}
+        run: bun install --frozen-lockfile
       - name: Static HTML export with Nuxt
-        run: ${{ steps.set-package-manager.outputs.manager }} run generate
+        run: bun run generate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
