@@ -24,6 +24,9 @@
                     "language": {
                         "type": "string"
                     },
+                    "license": {
+                        "type": "string"
+                    },
                     "repo_url": {
                         "type": "string"
                     },

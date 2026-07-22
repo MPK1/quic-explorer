@@ -184,6 +184,12 @@ const links = [
               {{ impl.language || "-" }}
             </UBadge>
           </li>
+          <li>
+            <span class="label">License:</span>
+            <UBadge color="gray" variant="solid">
+              {{ impl.license || gh?.license.name || "Loading..." }}
+            </UBadge>
+          </li>
         </ul>
         <h2 class="text-xl my-2">
           Github Stats <span class="align-super text-xs">LIVE</span>

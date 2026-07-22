@@ -3,6 +3,7 @@ export interface Implementation {
   name: string;
   maintainer: string;
   language: string;
+  license?: string;
   repo_url: string;
   logo_url?: string;
   created_at: string;
