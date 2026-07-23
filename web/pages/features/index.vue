@@ -50,6 +50,9 @@ const searchableAttributes = ["name", "short_name", "description"];
 useHead({
   title: "Features",
 });
+useSeoMeta({
+  description: `Browse ${features.length} QUIC protocol features and extensions — see which open-source implementations have tracked data for each.`,
+});
 </script>
 
 <template>

@@ -138,6 +138,12 @@ relevant_entries.forEach((entry) => {
 useHead({
   title: impl.name,
 });
+useSeoMeta({
+  description:
+    relevant_entries.length > 0
+      ? `${impl.name} — QUIC implementation in ${impl.language}, maintained by ${impl.maintainer}. Data tracked for ${relevant_entries.length} feature${relevant_entries.length === 1 ? "" : "s"}, with sources.`
+      : `${impl.name} — QUIC implementation in ${impl.language}, maintained by ${impl.maintainer}. See feature-support data and sources on QUIC Explorer.`,
+});
 
 const links = [
   {

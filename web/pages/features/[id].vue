@@ -59,6 +59,9 @@ const updated_at = feat.updated_at
 useHead({
   title: feat.name,
 });
+useSeoMeta({
+  description: `${feat.description} Tracked across ${relevant_entries.length} implementation${relevant_entries.length === 1 ? "" : "s"}, with sources.`,
+});
 
 const { buildColumns } = useTableColumns();
 const sorting = ref<{ id: string; desc: boolean }[]>([]);

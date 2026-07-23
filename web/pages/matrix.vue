@@ -24,6 +24,9 @@ const links = [
 useHead({
   title: "Feature Matrix",
 });
+useSeoMeta({
+  description: `A feature-support matrix for ${implementations.length} QUIC implementations across ${features.length} tracked features, with sourced data for every entry.`,
+});
 
 const entryLookup = new Map<string, Entry>();
 for (const entry of entries) {

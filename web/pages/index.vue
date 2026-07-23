@@ -2,6 +2,10 @@
 useHead({
   title: "Home",
 });
+useSeoMeta({
+  description:
+    "Compare open-source QUIC implementations by language, maintainer, license, and feature support — built for QUIC implementers and researchers.",
+});
 </script>
 
 <template>

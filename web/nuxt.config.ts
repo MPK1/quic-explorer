@@ -38,6 +38,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
+      titleTemplate: "%s · QUIC Explorer",
     },
   },
 

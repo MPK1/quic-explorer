@@ -157,6 +157,9 @@ const featureFilteredRows = computed(() =>
 useHead({
   title: "Implementations",
 });
+useSeoMeta({
+  description: `Compare ${implementations.length} open-source QUIC implementations — language, maintainer, license, and feature support.`,
+});
 </script>
 
 <template>
