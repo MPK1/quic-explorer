@@ -4,6 +4,23 @@ const host = process.server ? useRequestHeaders().host : window.location.host;
 
 const citation = getCitation();
 const isFullscreen = useState<boolean>("matrix-fullscreen", () => false);
+const citeOpen = ref(false);
+
+const navLinks = [
+  { label: "Implementations", to: "/implementations" },
+  { label: "Features", to: "/features" },
+  { label: "Matrix", to: "/matrix" },
+];
+
+const mobileMenuItems = computed(() => [
+  ...navLinks.map((l) => ({ label: l.label, to: l.to })),
+  { label: "Cite", onSelect: () => (citeOpen.value = true) },
+  {
+    label: "Open on GitHub",
+    to: "https://github.com/MPK1/quic-explorer",
+    target: "_blank",
+  },
+]);
 
 useHead({
   link: [
@@ -24,26 +41,24 @@ useHead({
 
         <div class="spacer"></div>
 
-        <span class="hdr-link-right">
-          <a href="/implementations">Implementations</a>
+        <span
+          v-for="link in navLinks"
+          :key="link.to"
+          class="hdr-link-right hidden md:inline"
+        >
+          <a :href="link.to">{{ link.label }}</a>
         </span>
         <span class="hdr-link-right hidden md:inline">
-          <a href="/features">Features</a>
+          <a
+            role="button"
+            tabindex="0"
+            class="cursor-pointer"
+            @click="citeOpen = true"
+            @keydown.enter="citeOpen = true"
+            >Cite</a
+          >
         </span>
         <span class="hdr-link-right hidden md:inline">
-          <a href="/matrix">Matrix</a>
-        </span>
-        <span class="hdr-link-right hidden md:inline">
-          <UPopover>
-            <a rel="noopener banner">Cite</a>
-            <template #content>
-              <div class="h-48 w-[28rem] p-4 text-black">
-                <UTextarea class="w-full h-full" :rows="7" v-model="citation" />
-              </div>
-            </template>
-          </UPopover>
-        </span>
-        <span class="hdr-link-right">
           <a
             href="https://github.com/MPK1/quic-explorer"
             target="_blank"
@@ -52,6 +67,16 @@ useHead({
             Open on GitHub
           </a>
         </span>
+
+        <UDropdownMenu :items="mobileMenuItems" :content="{ align: 'end' }">
+          <UButton
+            class="md:hidden"
+            color="neutral"
+            variant="ghost"
+            icon="i-lucide-menu"
+            aria-label="Open menu"
+          />
+        </UDropdownMenu>
       </nav>
     </header>
     <slot role="main" />
@@ -60,6 +85,11 @@ useHead({
         <VersionInformation />
       </div>
     </footer>
+    <UModal v-model:open="citeOpen" title="Cite QUIC Explorer">
+      <template #body>
+        <UTextarea class="w-full" :rows="7" :model-value="citation" readonly />
+      </template>
+    </UModal>
   </div>
 </template>
 
@@ -151,14 +181,6 @@ body {
   background-color: #fff;
   box-sizing: border-box;
   padding: 2em 3em;
-}
-
-.appear-active {
-  transition: opacity 0.4s ease;
-}
-
-.appear {
-  opacity: 0;
 }
 
 .footer {
