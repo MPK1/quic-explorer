@@ -54,7 +54,7 @@ useHead({
 
 <template>
   <div class="view">
-    <UBreadcrumb :links="links" class="mb-4" />
+    <UBreadcrumb :items="links" class="mb-4" />
     <FilterableTable
       title="Features"
       :columns="columns"
@@ -62,11 +62,11 @@ useHead({
       :searchable-attributes="searchableAttributes"
       :select="select"
     >
-      <template #short_name-data="{ row }">
-        <span class="font-mono">{{ row.short_name }}</span>
+      <template #short_name-cell="{ row }">
+        <span class="font-mono">{{ row.original.short_name }}</span>
       </template>
-      <template #value_type-data="{ row }">
-        <span class="font-mono">{{ row.value_type }}</span>
+      <template #value_type-cell="{ row }">
+        <span class="font-mono">{{ row.original.value_type }}</span>
       </template>
     </FilterableTable>
   </div>

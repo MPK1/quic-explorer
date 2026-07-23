@@ -7,7 +7,7 @@ useHead({
 <template>
   <div class="view">
     <div class="w-full block">
-      <img class="w-1/6 m-auto mb-6" src="public/favicon.png" />
+      <img class="w-1/6 m-auto mb-6" src="/favicon.png" />
     </div>
 
     <h1 class="text-4xl font-bold text-center mb-6">
@@ -30,7 +30,7 @@ useHead({
         class="cursor-pointer"
         to="/implementations"
         size="xs"
-        color="gray"
+        color="neutral"
         variant="outline"
         >implementations table</UButton
       >
@@ -43,7 +43,7 @@ useHead({
         class="cursor-pointer"
         to="/features"
         size="xs"
-        color="gray"
+        color="neutral"
         variant="outline"
         >features list</UButton
       >
@@ -57,7 +57,7 @@ useHead({
         to="https://github.com/MPK1/quic-explorer"
         target="_blank"
         size="xs"
-        color="gray"
+        color="neutral"
         variant="outline"
         >GitHub repository</UButton
       >

@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import type { SimpleColumn } from "~/composables/useTableColumns";
+
 const props = defineProps<{
   title: string;
-  columns: any[];
+  columns: SimpleColumn[];
   rows: { [key: string]: any }[];
   searchableAttributes: string[];
   select?: (row: any) => any;
 }>();
 
+const { buildColumns } = useTableColumns();
+
 const q = ref("");
+const sorting = ref<{ id: string; desc: boolean }[]>([]);
 
 const filteredRows = computed(() => {
   if (!q.value) {
@@ -22,6 +27,12 @@ const filteredRows = computed(() => {
     ),
   );
 });
+
+const tableColumns = computed(() => buildColumns(props.columns));
+
+function onSelect(_event: Event, row: any) {
+  props.select?.(row.original);
+}
 </script>
 
 <template>
@@ -35,7 +46,12 @@ const filteredRows = computed(() => {
         <UInput v-model="q" placeholder="Search..." />
       </div>
     </div>
-    <UTable :columns="columns" :rows="filteredRows" @select="select">
+    <UTable
+      v-model:sorting="sorting"
+      :data="filteredRows"
+      :columns="tableColumns"
+      :on-select="select ? onSelect : undefined"
+    >
       <template v-for="(_, name) in $slots" #[name]="slotProps">
         <slot :name="name" v-bind="slotProps ?? {}" />
       </template>

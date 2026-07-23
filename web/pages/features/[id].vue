@@ -51,6 +51,9 @@ useHead({
   title: feat ? "QUIC Explorer | " + feat.name : "Feat not found",
 });
 
+const { buildColumns } = useTableColumns();
+const sorting = ref<{ id: string; desc: boolean }[]>([]);
+
 const columns = [
   {
     label: "Implementation",
@@ -76,6 +79,7 @@ const columns = [
     class: "w-1",
   },
 ];
+const tableColumns = buildColumns(columns);
 
 const links = [
   {
@@ -95,7 +99,7 @@ const links = [
 
 <template>
   <div class="feat-view view">
-    <UBreadcrumb v-if="feat" :links="links" class="mb-4" />
+    <UBreadcrumb v-if="feat" :items="links" class="mb-4" />
     <template v-if="feat">
       <UCard>
         <template #header>
@@ -108,25 +112,25 @@ const links = [
         <ul class="meta">
           <li>
             <span class="label">Long Name:</span>
-            <UBadge color="gray" variant="solid">
+            <UBadge color="neutral" variant="subtle">
               {{ feat.name || "-" }}
             </UBadge>
           </li>
           <li>
             <span class="label">Short Name:</span>
-            <UBadge color="gray" variant="solid">
+            <UBadge color="neutral" variant="subtle">
               {{ feat.short_name || "-" }}
             </UBadge>
           </li>
           <li>
             <span class="label">Description:</span>
-            <UBadge color="gray" variant="solid">
+            <UBadge color="neutral" variant="subtle">
               {{ feat.description || "-" }}
             </UBadge>
           </li>
           <li>
             <span class="label">Value Type:</span>
-            <UBadge color="gray" variant="solid">
+            <UBadge color="neutral" variant="subtle">
               {{ feat.value_type || "-" }}
             </UBadge>
           </li>
@@ -144,21 +148,21 @@ const links = [
           <ul class="meta">
             <li>
               <span class="label pr-1">Feature created:</span>
-              <UBadge class="badge" color="gray" variant="solid">
+              <UBadge class="badge" color="neutral" variant="subtle">
                 {{ created_at || "?" }}
               </UBadge>
               by
-              <UBadge class="badge" color="gray" variant="solid">
+              <UBadge class="badge" color="neutral" variant="subtle">
                 {{ feat.created_by.split("<")[0].trim() || "?" }}
               </UBadge>
             </li>
             <li v-if="updated_at && feat.updated_by">
               <span class="label">Last update:</span>
-              <UBadge class="badge" color="gray" variant="solid">
+              <UBadge class="badge" color="neutral" variant="subtle">
                 {{ updated_at || "?" }}
               </UBadge>
               by
-              <UBadge class="badge" color="gray" variant="solid">
+              <UBadge class="badge" color="neutral" variant="subtle">
                 {{ feat.updated_by.split("<")[0].trim() || "?" }}
               </UBadge>
             </li>
@@ -172,51 +176,60 @@ const links = [
             <h1 class="text-2xl font-bold inline-block">Entries</h1>
           </div>
         </template>
-        <UTable :rows="relevant_entries" :columns="columns">
-          <template #implementation_name-data="{ row }">
-            <NuxtLink :to="'/implementations/' + row.implementation_uuid">
-              {{ row.implementation_name }}
+        <UTable
+          v-model:sorting="sorting"
+          :data="relevant_entries"
+          :columns="tableColumns"
+        >
+          <template #implementation_name-cell="{ row }">
+            <NuxtLink
+              :to="'/implementations/' + row.original.implementation_uuid"
+            >
+              {{ row.original.implementation_name }}
             </NuxtLink>
           </template>
-          <template #source-data="{ row }">
-            {{ row.source }}
-            <UTooltip :text="row.source_url" :popper="{ placement: 'left' }">
+          <template #source-cell="{ row }">
+            {{ row.original.source }}
+            <UTooltip
+              :text="row.original.source_url"
+              :content="{ side: 'left' }"
+            >
               <UButton
-                v-if="row.source_url"
+                v-if="row.original.source_url"
                 class="ml-2"
                 icon="i-mdi-link-variant"
-                size="2xs"
-                color="gray"
+                size="xs"
+                color="neutral"
                 variant="outline"
-                :to="row.source_url"
+                :to="row.original.source_url"
                 target="_blank"
               />
             </UTooltip>
           </template>
-          <template #last_update-data="{ row }">
+          <template #last_update-cell="{ row }">
             <UTooltip
-              :text="'by ' + row.last_update_by"
-              :popper="{ placement: 'right' }"
+              :text="'by ' + row.original.last_update_by"
+              :content="{ side: 'right' }"
             >
-              {{ row.last_update }}
+              {{ row.original.last_update }}
             </UTooltip>
           </template>
-          <template #value-data="{ row }">
-            <template v-if="row.comment">
+          <template #value-cell="{ row }">
+            <template v-if="row.original.comment">
               <UPopover mode="hover">
-                <span>{{ row.value_pretty }}</span
-                ><UBadge class="badge ml-2" color="gray" variant="solid"
+                <span>{{ row.original.value_pretty }}</span
+                ><UBadge class="badge ml-2" color="neutral" variant="solid"
                   >Hover for more details</UBadge
                 >
-                <template #panel>
+                <template #content>
                   <div class="p-4">
-                    {{ row.comment }}
+                    {{ row.original.comment }}
                   </div>
                 </template>
               </UPopover>
             </template>
             <template v-else>
-              {{ row.value_pretty }}
+              {{ row.original.value_pretty }}
             </template>
           </template>
         </UTable>

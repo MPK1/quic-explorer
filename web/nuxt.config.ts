@@ -30,7 +30,7 @@ const getAllRoutes = async () => {
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
-  ui: { icons: ["mdi"] },
+  css: ["~/assets/css/main.css"],
   colorMode: { preference: "light" },
 
   runtimeConfig: {

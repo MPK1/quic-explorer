@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Implementation, Feature, Entry } from "~/types";
-import type { FormError, FormSubmitEvent } from "#ui/types";
+import type { FormError, FormSubmitEvent } from "@nuxt/ui";
 
 import impls_json from "~/../data/implementations.json";
 import features_json from "~/../data/features.json";
@@ -50,11 +50,13 @@ const columns = [
 const modes = [
   {
     value: "value",
-    label: "Exclude entry if not set",
+    label: "value",
+    description: "Exclude entry if not set",
   },
   {
     value: "value-or-unset",
-    label: "Include entry if not set",
+    label: "value-or-unset",
+    description: "Include entry if not set",
   },
 ];
 
@@ -159,7 +161,7 @@ useHead({
 
 <template>
   <div class="view">
-    <UBreadcrumb :links="links" class="mb-4" />
+    <UBreadcrumb :items="links" class="mb-4" />
     <div
       v-if="filters.length > 0"
       class="px-3 py-2 border-y border-gray-200 dark:border-gray-700"
@@ -167,7 +169,8 @@ useHead({
       Active Filters (click to remove):
       <UButton
         variant="outline"
-        size="2xs"
+        color="neutral"
+        size="xs"
         v-for="f in filters"
         class="mr-2 my-1"
         :label="f.label"
@@ -189,91 +192,71 @@ useHead({
         />
       </template>
     </FilterableTable>
-    <UModal v-model="modalIsOpen">
-      <UCard
-        class=""
-        :ui="{
-          ring: '',
-          divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-        }"
-      >
-        <template #header>
-          <h1 class="text-xl">Add Filter</h1>
-        </template>
-
+    <UModal v-model:open="modalIsOpen" title="Add Filter">
+      <template #body>
         <UForm
           :validate="validate"
           :state="state"
           class="space-y-4"
           @submit="onFilterCriteriaAdd"
         >
-          <UFormGroup label="Feature" name="feature">
+          <UFormField label="Feature" name="feature">
             <USelectMenu
-              searchable
-              searchable-placeholder="Search feature..."
-              :search-attributes="['name', 'short_name', 'description']"
+              :search-input="{ placeholder: 'Search feature...' }"
               placeholder="Select a feature"
-              :options="
+              :items="
                 features.filter((f) =>
                   ['boolean', 'array'].includes(f.value_type),
                 )
               "
               v-model="state.feature"
-              option-attribute="name"
+              label-key="name"
+              class="w-full"
             >
-              <template #option="{ option: feature }">
+              <template #item="{ item: feature }">
                 <span class="truncate font-mono"
                   >[{{ feature.short_name }}]</span
                 ><span class="truncate">{{ feature.name }}</span>
               </template>
             </USelectMenu>
-          </UFormGroup>
+          </UFormField>
 
-          <UFormGroup label="Mode" name="mode">
-            <URadioGroup v-model="state.mode" :options="modes" key="key">
-              <template #label="{ option }">
-                <p>
-                  <span class="font-bold">{{ option.value }}</span>
-                  <span class="italic"> ({{ option.label }})</span>
-                </p>
-              </template>
-            </URadioGroup>
-          </UFormGroup>
+          <UFormField label="Mode" name="mode">
+            <URadioGroup v-model="state.mode" :items="modes" />
+          </UFormField>
 
-          <UFormGroup
+          <UFormField
             v-if="state.feature && state.feature.value_type == 'array'"
             label="Array Mode"
             name="arraymode"
           >
             <URadioGroup
               v-model="state.arraymode"
-              :options="[
+              :items="[
                 {
                   value: 'contains-one',
                   label: 'Contains one of the set values',
                 },
                 { value: 'contains-all', label: 'Contains all set values' },
               ]"
-            >
-            </URadioGroup>
-          </UFormGroup>
+            />
+          </UFormField>
 
-          <UFormGroup
+          <UFormField
             v-if="state.feature && state.feature.value_type == 'boolean'"
             label="Value"
             name="value"
           >
             <URadioGroup
               v-model="state.value"
-              :options="[
+              :items="[
                 { value: 1, label: 'Yes/True' },
                 { value: 0, label: 'No/False' },
               ]"
-            >
-            </URadioGroup>
-          </UFormGroup>
+            />
+          </UFormField>
 
-          <UFormGroup
+          <UFormField
             v-if="state.feature && state.feature.value_type == 'array'"
             label="Value"
             name="value"
@@ -281,33 +264,40 @@ useHead({
             <UInput
               placeholder="Enter one or more values, separated by commas"
               v-model="state.value"
+              class="w-full"
             />
-          </UFormGroup>
+          </UFormField>
 
           <div class="flex justify-end space-x-2">
-            <UButton color="red" variant="outline" @click="modalIsOpen = false"
+            <UButton
+              color="error"
+              variant="outline"
+              @click="modalIsOpen = false"
               >Cancel</UButton
             >
             <UButton type="submit">Add Filter</UButton>
           </div>
         </UForm>
-      </UCard>
+      </template>
     </UModal>
-    <UModal v-model="confirming" :ui="{ width: 'sm:max-w-sm' }">
-      <UCard>
-        <div class="font-semibold mb-2">{{ params.title }}</div>
+    <UModal
+      v-model:open="confirming"
+      :title="params.title"
+      :ui="{ content: 'sm:max-w-sm' }"
+    >
+      <template #body>
         <div>{{ params.message }}</div>
-        <template #footer>
-          <div class="flex justify-end space-x-2">
-            <UButton color="white" @click="confirming = false">
-              Cancel
-            </UButton>
-            <UButton color="red" variant="solid" @click="params.action">
-              {{ params.label }}</UButton
-            >
-          </div>
-        </template>
-      </UCard>
+      </template>
+      <template #footer>
+        <div class="flex justify-end space-x-2 w-full">
+          <UButton color="neutral" variant="outline" @click="confirming = false">
+            Cancel
+          </UButton>
+          <UButton color="error" variant="solid" @click="params.action">
+            {{ params.label }}</UButton
+          >
+        </div>
+      </template>
     </UModal>
   </div>
 </template>

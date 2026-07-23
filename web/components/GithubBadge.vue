@@ -4,7 +4,7 @@ defineProps<{
   label: string;
   icon: string;
   pending: Boolean;
-  gh: GithubRepo | null;
+  gh?: GithubRepo | null;
   value: Object | undefined;
 }>();
 </script>
@@ -14,13 +14,14 @@ defineProps<{
   </template>
   <template v-else>
     <UButton
-      size="2xs"
+      size="xs"
       :icon="icon"
-      class="mr-2 mb-2 cursor-default hover:bg-gray"
-      color="gray"
+      class="mr-2 mb-2 cursor-default"
+      color="neutral"
+      variant="subtle"
     >
       {{ label }}
-      <UBadge color="gray" variant="solid" :ui="{ rounded: 'rounded-full' }">{{
+      <UBadge color="neutral" variant="subtle" class="rounded-full">{{
         pending || !gh ? "?" : value
       }}</UBadge>
     </UButton>

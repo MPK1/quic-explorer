@@ -154,14 +154,14 @@ const matrix = computed(() =>
     "
   >
     <template v-if="!isFullscreen">
-      <UBreadcrumb :links="links" class="mb-4" />
+      <UBreadcrumb :items="links" class="mb-4" />
       <div
         class="flex justify-between px-3 py-3.5 border-b border-gray-200 dark:border-gray-700"
       >
         <h1 class="text-2xl font-semibold">Feature Matrix</h1>
         <UButton
           variant="outline"
-          color="gray"
+          color="neutral"
           size="sm"
           icon="i-heroicons-arrows-pointing-out"
           label="Fullscreen"
@@ -195,12 +195,12 @@ const matrix = computed(() =>
         </div>
         <USelectMenu
           v-model="selectedImplementations"
-          :options="implementations"
-          option-attribute="name"
+          :items="implementations"
+          label-key="name"
           multiple
-          searchable
-          searchable-placeholder="Search implementations..."
+          :search-input="{ placeholder: 'Search implementations...' }"
           placeholder="None selected"
+          class="w-full"
         />
       </div>
       <div class="min-w-[220px] flex-1">
@@ -227,14 +227,14 @@ const matrix = computed(() =>
         </div>
         <USelectMenu
           v-model="selectedFeatures"
-          :options="features"
-          option-attribute="name"
+          :items="features"
+          label-key="name"
           multiple
-          searchable
-          searchable-placeholder="Search features..."
+          :search-input="{ placeholder: 'Search features...' }"
           placeholder="None selected"
+          class="w-full"
         >
-          <template #option="{ option: feature }">
+          <template #item="{ item: feature }">
             <span class="truncate font-mono">[{{ feature.short_name }}]</span>
             <span class="truncate">{{ feature.name }}</span>
           </template>
@@ -265,7 +265,7 @@ const matrix = computed(() =>
       v-if="isFullscreen"
       class="sticky left-3 top-3 z-20 m-3 print:hidden"
       variant="solid"
-      color="gray"
+      color="neutral"
       size="sm"
       icon="i-heroicons-arrows-pointing-in"
       label="Exit fullscreen"
@@ -352,7 +352,7 @@ const matrix = computed(() =>
               <UPopover
                 v-else-if="c.cell.advanced"
                 mode="hover"
-                :popper="{ placement: 'top' }"
+                :content="{ side: 'top' }"
               >
                 <a
                   :href="c.cell.entry!.source_url"
@@ -362,7 +362,7 @@ const matrix = computed(() =>
                 >
                   {{ c.feature.value_type === "array" ? "ℹ️" : symbols[c.cell.status] }}
                 </a>
-                <template #panel>
+                <template #content>
                   <div class="max-w-xs p-3 text-left text-sm">
                     <div class="mb-1 font-semibold">{{ c.feature.name }}</div>
                     <ul

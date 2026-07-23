@@ -36,7 +36,7 @@ useHead({
         <span class="hdr-link-right hidden md:inline">
           <UPopover>
             <a rel="noopener banner">Cite</a>
-            <template #panel>
+            <template #content>
               <div class="h-48 w-[28rem] p-4 text-black">
                 <UTextarea class="w-full h-full" :rows="7" v-model="citation" />
               </div>
@@ -76,10 +76,6 @@ body {
   padding-bottom: 50px;
 }
 
-a {
-  color: #18181b;
-  text-decoration: none;
-}
 .header {
   background-color: #18181b;
   z-index: 999;
