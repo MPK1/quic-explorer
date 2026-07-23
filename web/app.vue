@@ -1,6 +1,10 @@
 <script setup>
 useSeoMeta({
-  ogImage: "/favicon.png",
+  ogImage: "/og-banner.png",
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt:
+    "QUIC Explorer — a curated, citable reference of QUIC protocol implementations and their feature support",
 });
 useHead({
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
