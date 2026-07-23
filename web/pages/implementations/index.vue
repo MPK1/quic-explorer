@@ -160,6 +160,12 @@ useHead({
 useSeoMeta({
   description: `Compare ${implementations.length} open-source QUIC implementations — language, maintainer, license, and feature support.`,
 });
+
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+  }),
+]);
 </script>
 
 <template>

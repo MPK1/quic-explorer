@@ -53,6 +53,12 @@ useHead({
 useSeoMeta({
   description: `Browse ${features.length} QUIC protocol features and extensions — see which open-source implementations have tracked data for each.`,
 });
+
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+  }),
+]);
 </script>
 
 <template>

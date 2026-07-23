@@ -107,6 +107,12 @@ const links = [
     label: feat.name,
   },
 ];
+
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+  }),
+]);
 </script>
 
 <template>

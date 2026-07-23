@@ -6,6 +6,39 @@ useSeoMeta({
   description:
     "Compare open-source QUIC implementations by language, maintainer, license, and feature support — built for QUIC implementers and researchers.",
 });
+
+const { data: commitHash } = useCommitHash();
+
+useSchemaOrg([
+  defineDataset({
+    name: "QUIC Explorer Dataset",
+    description:
+      "A curated, citable dataset of QUIC protocol implementations, their trackable features, and sourced entries linking the two.",
+    keywords: [
+      "QUIC",
+      "HTTP/3",
+      "protocol implementations",
+      "feature support",
+    ],
+    license: "https://spdx.org/licenses/MIT.html",
+    creator: definePerson({ name: "Marcel Kempf" }),
+    citation: getCitation(),
+    distribution: [
+      {
+        contentUrl: `https://raw.githubusercontent.com/MPK1/quic-explorer/${commitHash.value}/data/implementations.json`,
+        encodingFormat: "application/json",
+      },
+      {
+        contentUrl: `https://raw.githubusercontent.com/MPK1/quic-explorer/${commitHash.value}/data/features.json`,
+        encodingFormat: "application/json",
+      },
+      {
+        contentUrl: `https://raw.githubusercontent.com/MPK1/quic-explorer/${commitHash.value}/data/entries.json`,
+        encodingFormat: "application/json",
+      },
+    ],
+  }),
+]);
 </script>
 
 <template>

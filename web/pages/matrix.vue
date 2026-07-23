@@ -28,6 +28,12 @@ useSeoMeta({
   description: `A feature-support matrix for ${implementations.length} QUIC implementations across ${features.length} tracked features, with sourced data for every entry.`,
 });
 
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+  }),
+]);
+
 const entryLookup = new Map<string, Entry>();
 for (const entry of entries) {
   entryLookup.set(`${entry.implementation_uuid}__${entry.feature_uuid}`, entry);

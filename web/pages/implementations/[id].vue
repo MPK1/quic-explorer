@@ -159,6 +159,30 @@ const links = [
     label: impl.name,
   },
 ];
+
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+  }),
+]);
+
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name: impl.name,
+        codeRepository: impl.repo_url,
+        programmingLanguage: impl.language,
+        ...(impl.license ? { license: impl.license } : {}),
+        maintainer: { "@type": "Organization", name: impl.maintainer },
+        url: `https://quic-explorer.net/implementations/${impl.uuid}`,
+      }),
+    },
+  ],
+});
 </script>
 
 <template>
