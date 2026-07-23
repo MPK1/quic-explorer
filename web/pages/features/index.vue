@@ -42,7 +42,7 @@ const columns = [
 ];
 
 function select(row: Feature) {
-  return navigateTo("/features/" + row.uuid);
+  return navigateTo("/features/" + row.slug);
 }
 
 const searchableAttributes = ["name", "short_name", "description"];

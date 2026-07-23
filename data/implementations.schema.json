@@ -15,6 +15,10 @@
                     "uuid": {
                         "type": "string"
                     },
+                    "slug": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -57,6 +61,7 @@
                 },
                 "required": [
                     "uuid",
+                    "slug",
                     "repo_url",
                     "name",
                     "maintainer",

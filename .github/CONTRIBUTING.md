@@ -7,7 +7,7 @@ The contribution guidelines are not yet written, so if you want to contribute, j
 
 ### Add A Feature
 
-These is no automated way to achieve that yet, so just go to [`data/features.json`](../data/features.json) and copy an existing entry. Make sure to adjust name/date and to add a new and valid UUIDv4. You can use [uuidgenerator.net](https://www.uuidgenerator.net/version4) to quickly generate one. Take a look at [`data/features.schema.json`](../data/features.schema.json) to understand the schema used. Your IDE might also be able to lint the json files for you.
+These is no automated way to achieve that yet, so just go to [`data/features.json`](../data/features.json) and copy an existing entry. Make sure to adjust name/date and to add a new and valid UUIDv4. You can use [uuidgenerator.net](https://www.uuidgenerator.net/version4) to quickly generate one. Also add a unique `slug` (lowercase-kebab-case, derived from the name, e.g. `multipath-support`) — it's used in the site's URLs. Take a look at [`data/features.schema.json`](../data/features.schema.json) to understand the schema used. Your IDE might also be able to lint the json files for you. `python cli/validate_data.py` checks both UUID and slug uniqueness.
 
 ### Add An Implementation
 

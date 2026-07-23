@@ -8,6 +8,7 @@ Runs two layers of checks over ``data/*.json``:
 2. **Referential integrity & consistency** — beyond what the schemas can
    express:
    * implementation/feature UUIDs are well-formed and unique,
+   * implementation/feature slugs are lowercase-kebab-case and unique,
    * every entry references an existing implementation and feature,
    * there is at most one entry per (implementation, feature) pair,
    * each entry's ``value`` matches the ``value_type`` of its feature.
@@ -24,10 +25,13 @@ Used by CI (``.github/workflows/json-linter.yml``) and the pre-commit hook
 
 import json
 import os
+import re
 import sys
 import uuid
 
 from jsonschema import Draft7Validator
+
+SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 DATA_DIR = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"
@@ -63,6 +67,11 @@ def is_valid_uuid(value):
         return True
     except (ValueError, AttributeError, TypeError):
         return False
+
+
+def is_valid_slug(value):
+    """True if ``value`` is a lowercase-kebab-case slug string."""
+    return isinstance(value, str) and bool(SLUG_RE.fullmatch(value))
 
 
 def load(filename):
@@ -114,8 +123,9 @@ def main():
     feat_items = loaded["features"].get("items", [])
     ent_items = loaded["entries"].get("items", [])
 
-    # ---- 2a. Unique UUIDs -------------------------------------------------
+    # ---- 2a. Unique UUIDs & slugs ------------------------------------------
     impl_ids = {}
+    impl_slugs = {}
     for idx, impl in enumerate(impl_items):
         uid = impl.get("uuid")
         if not is_valid_uuid(uid):
@@ -128,7 +138,22 @@ def main():
         else:
             impl_ids[uid] = idx
 
+        slug = impl.get("slug")
+        if not is_valid_slug(slug):
+            errors.append(
+                f"[implementations[{idx}]] slug {slug!r} is not a valid slug "
+                "(expected lowercase-kebab-case, e.g. 'msquic')"
+            )
+        elif slug in impl_slugs:
+            errors.append(
+                f"[implementations] duplicate slug {slug} "
+                f"(items {impl_slugs[slug]} and {idx})"
+            )
+        else:
+            impl_slugs[slug] = idx
+
     feat_by_id = {}
+    feat_slugs = {}
     for idx, feat in enumerate(feat_items):
         uid = feat.get("uuid")
         if not is_valid_uuid(uid):
@@ -137,6 +162,19 @@ def main():
             errors.append(f"[features] duplicate uuid {uid}")
         else:
             feat_by_id[uid] = feat
+
+        slug = feat.get("slug")
+        if not is_valid_slug(slug):
+            errors.append(
+                f"[features[{idx}]] slug {slug!r} is not a valid slug "
+                "(expected lowercase-kebab-case, e.g. 'multipath-support')"
+            )
+        elif slug in feat_slugs:
+            errors.append(
+                f"[features] duplicate slug {slug} (items {feat_slugs[slug]} and {idx})"
+            )
+        else:
+            feat_slugs[slug] = idx
 
     # ---- 2b. Entry referential integrity + value typing -------------------
     seen_pairs = {}

@@ -21,9 +21,19 @@ const gitCommitHash = getGitCommitHash();
 
 const getAllRoutes = async () => {
   const implementations: Implementation[] = implementationsJson.items;
-  const impl_routes = implementations.map((i) => `/implementations/${i.uuid}`);
+  // Prerender both the canonical slug route and the legacy uuid route (kept
+  // as a redirect stub) for each implementation/feature — nothing links to
+  // the uuid routes anymore, so Nitro's crawler can't discover them on its
+  // own; they must be listed explicitly.
+  const impl_routes = implementations.flatMap((i) => [
+    `/implementations/${i.slug}`,
+    `/implementations/${i.uuid}`,
+  ]);
   const features: Feature[] = featuresJson.items;
-  const feature_routes = features.map((f) => `/features/${f.uuid}`);
+  const feature_routes = features.flatMap((f) => [
+    `/features/${f.slug}`,
+    `/features/${f.uuid}`,
+  ]);
   return impl_routes.concat(feature_routes);
 };
 

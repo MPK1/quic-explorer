@@ -9,9 +9,9 @@ const route = useRoute();
 const id = computed(() => route.params.id as string);
 
 const implementations: Implementation[] = impls_json.items;
-const impl: Implementation | undefined = implementations.find(
-  (item) => item.uuid === id.value,
-);
+const impl: Implementation | undefined =
+  implementations.find((item) => item.slug === id.value) ??
+  implementations.find((item) => item.uuid === id.value);
 
 if (!impl) {
   throw createError({
@@ -20,6 +20,10 @@ if (!impl) {
     fatal: true,
   });
 }
+
+// True when this page was reached via the legacy uuid URL — render a
+// redirect stub instead of the full page (see the SEO roadmap's Phase 5).
+const isLegacyUrl = impl.slug !== id.value;
 
 const created_at = impl ? new Date(impl.created_at).toUTCString() : undefined;
 const updated_at =
@@ -80,7 +84,7 @@ const { data: gh } = is_github_repo
 const features: Feature[] = features_json.items;
 const entries: Entry[] = entries_json.items;
 const relevant_entries: Entry[] = entries.filter(
-  (item) => item.implementation_uuid === id.value,
+  (item) => item.implementation_uuid === impl.uuid,
 );
 
 const { buildColumns } = useTableColumns();
@@ -117,6 +121,7 @@ relevant_entries.forEach((entry) => {
   const feat = features.find((item) => item.uuid === entry.feature_uuid);
   if (feat) {
     entry.feature_name = feat.name;
+    entry.feature_slug = feat.slug;
   }
 
   entry.last_update = (entry.updated_at || entry.created_at).split("T")[0];
@@ -135,16 +140,6 @@ relevant_entries.forEach((entry) => {
   }
 });
 
-useHead({
-  title: impl.name,
-});
-useSeoMeta({
-  description:
-    relevant_entries.length > 0
-      ? `${impl.name} — QUIC implementation in ${impl.language}, maintained by ${impl.maintainer}. Data tracked for ${relevant_entries.length} feature${relevant_entries.length === 1 ? "" : "s"}, with sources.`
-      : `${impl.name} — QUIC implementation in ${impl.language}, maintained by ${impl.maintainer}. See feature-support data and sources on QUIC Explorer.`,
-});
-
 const links = [
   {
     label: "Home",
@@ -160,33 +155,60 @@ const links = [
   },
 ];
 
-useSchemaOrg([
-  defineBreadcrumb({
-    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
-  }),
-]);
-
 useHead({
-  script: [
-    {
-      type: "application/ld+json",
-      innerHTML: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        name: impl.name,
-        codeRepository: impl.repo_url,
-        programmingLanguage: impl.language,
-        ...(impl.license ? { license: impl.license } : {}),
-        maintainer: { "@type": "Organization", name: impl.maintainer },
-        url: `https://quic-explorer.net/implementations/${impl.uuid}`,
-      }),
-    },
-  ],
+  title: impl.name,
 });
+
+if (isLegacyUrl) {
+  // Legacy uuid URL: point crawlers/browsers at the canonical slug URL
+  // instead of duplicating the full page's content/metadata.
+  const canonicalUrl = `https://quic-explorer.net/implementations/${impl.slug}`;
+  useHead({
+    link: [{ rel: "canonical", href: canonicalUrl }],
+    meta: [{ "http-equiv": "refresh", content: `0; url=${canonicalUrl}` }],
+  });
+} else {
+  useSeoMeta({
+    description:
+      relevant_entries.length > 0
+        ? `${impl.name} — QUIC implementation in ${impl.language}, maintained by ${impl.maintainer}. Data tracked for ${relevant_entries.length} feature${relevant_entries.length === 1 ? "" : "s"}, with sources.`
+        : `${impl.name} — QUIC implementation in ${impl.language}, maintained by ${impl.maintainer}. See feature-support data and sources on QUIC Explorer.`,
+  });
+
+  useSchemaOrg([
+    defineBreadcrumb({
+      itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+    }),
+  ]);
+
+  useHead({
+    script: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          name: impl.name,
+          codeRepository: impl.repo_url,
+          programmingLanguage: impl.language,
+          ...(impl.license ? { license: impl.license } : {}),
+          maintainer: { "@type": "Organization", name: impl.maintainer },
+          url: `https://quic-explorer.net/implementations/${impl.slug}`,
+        }),
+      },
+    ],
+  });
+}
 </script>
 
 <template>
-  <div class="impl-view view">
+  <div v-if="isLegacyUrl" class="impl-view view">
+    <p>
+      This page has moved to
+      <NuxtLink :to="'/implementations/' + impl.slug">{{ impl.name }}</NuxtLink>.
+    </p>
+  </div>
+  <div v-else class="impl-view view">
     <UBreadcrumb :items="links" class="mb-4" />
     <UCard>
       <template #header>
@@ -312,7 +334,7 @@ useHead({
           :columns="tableColumns"
         >
           <template #feature_name-cell="{ row }">
-            <NuxtLink :to="'/features/' + row.original.feature_uuid">
+            <NuxtLink :to="'/features/' + row.original.feature_slug">
               {{ row.original.feature_name }}
             </NuxtLink>
           </template>

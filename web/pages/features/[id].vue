@@ -11,9 +11,9 @@ const id = computed(() => route.params.id as string);
 const implementations: Implementation[] = impls_json.items;
 
 const features: Feature[] = features_json.items;
-const feat: Feature | undefined = features.find(
-  (item) => item.uuid === id.value,
-);
+const feat: Feature | undefined =
+  features.find((item) => item.slug === id.value) ??
+  features.find((item) => item.uuid === id.value);
 
 if (!feat) {
   throw createError({
@@ -23,9 +23,13 @@ if (!feat) {
   });
 }
 
+// True when this page was reached via the legacy uuid URL — render a
+// redirect stub instead of the full page (see the SEO roadmap's Phase 5).
+const isLegacyUrl = feat.slug !== id.value;
+
 const entries: Entry[] = entries_json.items;
 const relevant_entries: Entry[] = entries.filter(
-  (item) => item.feature_uuid === id.value,
+  (item) => item.feature_uuid === feat.uuid,
 );
 relevant_entries.forEach((entry) => {
   const impl = implementations.find(
@@ -33,6 +37,7 @@ relevant_entries.forEach((entry) => {
   );
   if (impl) {
     entry.implementation_name = impl.name;
+    entry.implementation_slug = impl.slug;
   }
 
   entry.last_update = (entry.updated_at || entry.created_at).split("T")[0];
@@ -55,13 +60,6 @@ const created_at = new Date(feat.created_at).toUTCString();
 const updated_at = feat.updated_at
   ? new Date(feat.updated_at).toUTCString()
   : undefined;
-
-useHead({
-  title: feat.name,
-});
-useSeoMeta({
-  description: `${feat.description} Tracked across ${relevant_entries.length} implementation${relevant_entries.length === 1 ? "" : "s"}, with sources.`,
-});
 
 const { buildColumns } = useTableColumns();
 const sorting = ref<{ id: string; desc: boolean }[]>([]);
@@ -108,15 +106,39 @@ const links = [
   },
 ];
 
-useSchemaOrg([
-  defineBreadcrumb({
-    itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
-  }),
-]);
+useHead({
+  title: feat.name,
+});
+
+if (isLegacyUrl) {
+  // Legacy uuid URL: point crawlers/browsers at the canonical slug URL
+  // instead of duplicating the full page's content/metadata.
+  const canonicalUrl = `https://quic-explorer.net/features/${feat.slug}`;
+  useHead({
+    link: [{ rel: "canonical", href: canonicalUrl }],
+    meta: [{ "http-equiv": "refresh", content: `0; url=${canonicalUrl}` }],
+  });
+} else {
+  useSeoMeta({
+    description: `${feat.description} Tracked across ${relevant_entries.length} implementation${relevant_entries.length === 1 ? "" : "s"}, with sources.`,
+  });
+
+  useSchemaOrg([
+    defineBreadcrumb({
+      itemListElement: links.map((l) => ({ name: l.label, item: l.to })),
+    }),
+  ]);
+}
 </script>
 
 <template>
-  <div class="feat-view view">
+  <div v-if="isLegacyUrl" class="feat-view view">
+    <p>
+      This page has moved to
+      <NuxtLink :to="'/features/' + feat.slug">{{ feat.name }}</NuxtLink>.
+    </p>
+  </div>
+  <div v-else class="feat-view view">
     <UBreadcrumb :items="links" class="mb-4" />
     <UCard>
       <template #header>
@@ -200,7 +222,7 @@ useSchemaOrg([
       >
         <template #implementation_name-cell="{ row }">
           <NuxtLink
-            :to="'/implementations/' + row.original.implementation_uuid"
+            :to="'/implementations/' + row.original.implementation_slug"
           >
             {{ row.original.implementation_name }}
           </NuxtLink>

@@ -8,6 +8,7 @@
             "value_type": "array",
             "value_meta": null,
             "uuid": "39cb9235-1110-49f4-8750-4fbbbf1cb5c2",
+            "slug": "supported-congestion-control-algorithms",
             "created_at": "2024-01-24T19:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -18,6 +19,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
+            "slug": "quic-v2-support",
             "created_at": "2024-01-24T19:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -28,6 +30,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "9cde60c7-9a3d-4bbf-9dc4-3733c67713e2",
+            "slug": "greasing-the-quic-bit-support",
             "created_at": "2024-07-03T12:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -38,6 +41,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
+            "slug": "datagram-extension-support",
             "created_at": "2024-07-03T12:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -48,6 +52,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "da6ba40d-3ae2-49b1-a772-876149a2f0ab",
+            "slug": "h3-integration",
             "created_at": "2024-07-03T12:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -58,6 +63,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "681db7da-bbee-4f6d-aaab-dd39cfcebec9",
+            "slug": "multipath-support",
             "created_at": "2024-01-24T19:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -68,6 +74,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "37ea91dd-f9e8-4e52-b53a-a3da32a26beb",
+            "slug": "ack-frequency-support",
             "created_at": "2024-10-10T16:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -78,6 +85,7 @@
             "value_type": "array",
             "value_meta": null,
             "uuid": "ad7d5635-1522-404a-a9cb-e87ccdaec4b8",
+            "slug": "used-tls-libraries",
             "created_at": "2024-07-03T12:30:00.000000+00:00",
             "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         },
@@ -88,6 +96,7 @@
             "value_type": "boolean",
             "value_meta": null,
             "uuid": "2c37630b-15f9-41a8-89d2-095518024deb",
+            "slug": "ech-support",
             "created_at": "2025-09-21T15:00:00.000000+00:00",
             "created_by": "Leopold Jofer <mail@leoj.de>"
         }

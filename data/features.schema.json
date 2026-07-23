@@ -15,6 +15,10 @@
                     "uuid": {
                         "type": "string"
                     },
+                    "slug": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -46,11 +50,12 @@
                 },
                 "required": [
                     "uuid",
+                    "slug",
                     "name",
                     "short_name",
                     "value_type",
                     "created_at",
-                    "created_by"                    
+                    "created_by"
                 ]
             }
         }

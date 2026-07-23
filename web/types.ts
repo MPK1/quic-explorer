@@ -1,5 +1,6 @@
 export interface Implementation {
   uuid: string;
+  slug: string;
   name: string;
   maintainer: string;
   language: string;
@@ -14,6 +15,7 @@ export interface Implementation {
 
 export interface Feature {
   uuid: string;
+  slug: string;
   name: string;
   short_name: string;
   description: string;

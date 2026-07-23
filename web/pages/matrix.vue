@@ -317,7 +317,7 @@ const matrix = computed(() =>
               class="sticky left-0 z-10 border border-gray-200 bg-white px-3 py-1.5 text-left font-medium dark:border-gray-700 dark:bg-gray-900"
             >
               <NuxtLink
-                :to="'/implementations/' + row.impl.uuid"
+                :to="'/implementations/' + row.impl.slug"
                 class="hover:underline"
               >
                 {{ row.impl.name }}

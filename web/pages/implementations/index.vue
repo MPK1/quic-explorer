@@ -61,7 +61,7 @@ const modes = [
 ];
 
 function select(row: Implementation) {
-  return navigateTo("/implementations/" + row.uuid);
+  return navigateTo("/implementations/" + row.slug);
 }
 
 const { confirming, params } = useConfirm();
