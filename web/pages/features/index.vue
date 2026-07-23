@@ -48,7 +48,7 @@ function select(row: Feature) {
 const searchableAttributes = ["name", "short_name", "description"];
 
 useHead({
-  title: "QUIC Explorer | Features",
+  title: "Features",
 });
 </script>
 

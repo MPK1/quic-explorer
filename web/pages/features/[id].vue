@@ -15,6 +15,14 @@ const feat: Feature | undefined = features.find(
   (item) => item.uuid === id.value,
 );
 
+if (!feat) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Feature not found",
+    fatal: true,
+  });
+}
+
 const entries: Entry[] = entries_json.items;
 const relevant_entries: Entry[] = entries.filter(
   (item) => item.feature_uuid === id.value,
@@ -43,12 +51,13 @@ relevant_entries.forEach((entry) => {
   }
 });
 
-const created_at = feat ? new Date(feat.created_at).toUTCString() : undefined;
-const updated_at =
-  feat && feat.updated_at ? new Date(feat.updated_at).toUTCString() : undefined;
+const created_at = new Date(feat.created_at).toUTCString();
+const updated_at = feat.updated_at
+  ? new Date(feat.updated_at).toUTCString()
+  : undefined;
 
 useHead({
-  title: feat ? "QUIC Explorer | " + feat.name : "Feat not found",
+  title: feat.name,
 });
 
 const { buildColumns } = useTableColumns();
@@ -92,152 +101,144 @@ const links = [
     to: "/features",
   },
   {
-    label: feat ? feat.name : "",
+    label: feat.name,
   },
 ];
 </script>
 
 <template>
   <div class="feat-view view">
-    <UBreadcrumb v-if="feat" :items="links" class="mb-4" />
-    <template v-if="feat">
-      <UCard>
-        <template #header>
-          <div class="flex justify-between">
-            <h1 class="text-3xl font-bold inline-block">{{ feat.name }}</h1>
-          </div>
-        </template>
+    <UBreadcrumb :items="links" class="mb-4" />
+    <UCard>
+      <template #header>
+        <div class="flex justify-between">
+          <h1 class="text-3xl font-bold inline-block">{{ feat.name }}</h1>
+        </div>
+      </template>
 
-        <h2 class="text-xl mb-2">General Information</h2>
+      <h2 class="text-xl mb-2">General Information</h2>
+      <ul class="meta">
+        <li>
+          <span class="label">Long Name:</span>
+          <UBadge color="neutral" variant="subtle">
+            {{ feat.name || "-" }}
+          </UBadge>
+        </li>
+        <li>
+          <span class="label">Short Name:</span>
+          <UBadge color="neutral" variant="subtle">
+            {{ feat.short_name || "-" }}
+          </UBadge>
+        </li>
+        <li>
+          <span class="label">Description:</span>
+          <UBadge color="neutral" variant="subtle">
+            {{ feat.description || "-" }}
+          </UBadge>
+        </li>
+        <li>
+          <span class="label">Value Type:</span>
+          <UBadge color="neutral" variant="subtle">
+            {{ feat.value_type || "-" }}
+          </UBadge>
+        </li>
+        <li>
+          <span class="label" v-if="feat.value_meta">Value Meta:</span>
+          <pre
+            v-if="feat.value_meta"
+            class="ring-gray-300 ring-inset ring-1 text-gray-700 bg-gray-50 rounded-md text-xs p-2"
+            v-html="JSON.stringify(feat.value_meta, null, 2)"
+          ></pre>
+        </li>
+      </ul>
+
+      <template #footer>
         <ul class="meta">
           <li>
-            <span class="label">Long Name:</span>
-            <UBadge color="neutral" variant="subtle">
-              {{ feat.name || "-" }}
+            <span class="label pr-1">Feature created:</span>
+            <UBadge class="badge" color="neutral" variant="subtle">
+              {{ created_at || "?" }}
+            </UBadge>
+            by
+            <UBadge class="badge" color="neutral" variant="subtle">
+              {{ feat.created_by.split("<")[0].trim() || "?" }}
             </UBadge>
           </li>
-          <li>
-            <span class="label">Short Name:</span>
-            <UBadge color="neutral" variant="subtle">
-              {{ feat.short_name || "-" }}
+          <li v-if="updated_at && feat.updated_by">
+            <span class="label">Last update:</span>
+            <UBadge class="badge" color="neutral" variant="subtle">
+              {{ updated_at || "?" }}
             </UBadge>
-          </li>
-          <li>
-            <span class="label">Description:</span>
-            <UBadge color="neutral" variant="subtle">
-              {{ feat.description || "-" }}
+            by
+            <UBadge class="badge" color="neutral" variant="subtle">
+              {{ feat.updated_by.split("<")[0].trim() || "?" }}
             </UBadge>
-          </li>
-          <li>
-            <span class="label">Value Type:</span>
-            <UBadge color="neutral" variant="subtle">
-              {{ feat.value_type || "-" }}
-            </UBadge>
-          </li>
-          <li>
-            <span class="label" v-if="feat.value_meta">Value Meta:</span>
-            <pre
-              v-if="feat.value_meta"
-              class="ring-gray-300 ring-inset ring-1 text-gray-700 bg-gray-50 rounded-md text-xs p-2"
-              v-html="JSON.stringify(feat.value_meta, null, 2)"
-            ></pre>
           </li>
         </ul>
+      </template>
+    </UCard>
 
-        <template #footer>
-          <ul class="meta">
-            <li>
-              <span class="label pr-1">Feature created:</span>
-              <UBadge class="badge" color="neutral" variant="subtle">
-                {{ created_at || "?" }}
-              </UBadge>
-              by
-              <UBadge class="badge" color="neutral" variant="subtle">
-                {{ feat.created_by.split("<")[0].trim() || "?" }}
-              </UBadge>
-            </li>
-            <li v-if="updated_at && feat.updated_by">
-              <span class="label">Last update:</span>
-              <UBadge class="badge" color="neutral" variant="subtle">
-                {{ updated_at || "?" }}
-              </UBadge>
-              by
-              <UBadge class="badge" color="neutral" variant="subtle">
-                {{ feat.updated_by.split("<")[0].trim() || "?" }}
-              </UBadge>
-            </li>
-          </ul>
+    <UCard class="mt-8">
+      <template #header>
+        <div class="flex justify-between">
+          <h1 class="text-2xl font-bold inline-block">Entries</h1>
+        </div>
+      </template>
+      <UTable
+        v-model:sorting="sorting"
+        :data="relevant_entries"
+        :columns="tableColumns"
+      >
+        <template #implementation_name-cell="{ row }">
+          <NuxtLink
+            :to="'/implementations/' + row.original.implementation_uuid"
+          >
+            {{ row.original.implementation_name }}
+          </NuxtLink>
         </template>
-      </UCard>
-
-      <UCard class="mt-8">
-        <template #header>
-          <div class="flex justify-between">
-            <h1 class="text-2xl font-bold inline-block">Entries</h1>
-          </div>
+        <template #source-cell="{ row }">
+          {{ row.original.source }}
+          <UTooltip :text="row.original.source_url" :content="{ side: 'left' }">
+            <UButton
+              v-if="row.original.source_url"
+              class="ml-2"
+              icon="i-mdi-link-variant"
+              size="xs"
+              color="neutral"
+              variant="outline"
+              :to="row.original.source_url"
+              target="_blank"
+            />
+          </UTooltip>
         </template>
-        <UTable
-          v-model:sorting="sorting"
-          :data="relevant_entries"
-          :columns="tableColumns"
-        >
-          <template #implementation_name-cell="{ row }">
-            <NuxtLink
-              :to="'/implementations/' + row.original.implementation_uuid"
-            >
-              {{ row.original.implementation_name }}
-            </NuxtLink>
+        <template #last_update-cell="{ row }">
+          <UTooltip
+            :text="'by ' + row.original.last_update_by"
+            :content="{ side: 'right' }"
+          >
+            {{ row.original.last_update }}
+          </UTooltip>
+        </template>
+        <template #value-cell="{ row }">
+          <template v-if="row.original.comment">
+            <UPopover mode="hover">
+              <span>{{ row.original.value_pretty }}</span
+              ><UBadge class="badge ml-2" color="neutral" variant="solid"
+                >Hover for more details</UBadge
+              >
+              <template #content>
+                <div class="p-4">
+                  {{ row.original.comment }}
+                </div>
+              </template>
+            </UPopover>
           </template>
-          <template #source-cell="{ row }">
-            {{ row.original.source }}
-            <UTooltip
-              :text="row.original.source_url"
-              :content="{ side: 'left' }"
-            >
-              <UButton
-                v-if="row.original.source_url"
-                class="ml-2"
-                icon="i-mdi-link-variant"
-                size="xs"
-                color="neutral"
-                variant="outline"
-                :to="row.original.source_url"
-                target="_blank"
-              />
-            </UTooltip>
+          <template v-else>
+            {{ row.original.value_pretty }}
           </template>
-          <template #last_update-cell="{ row }">
-            <UTooltip
-              :text="'by ' + row.original.last_update_by"
-              :content="{ side: 'right' }"
-            >
-              {{ row.original.last_update }}
-            </UTooltip>
-          </template>
-          <template #value-cell="{ row }">
-            <template v-if="row.original.comment">
-              <UPopover mode="hover">
-                <span>{{ row.original.value_pretty }}</span
-                ><UBadge class="badge ml-2" color="neutral" variant="solid"
-                  >Hover for more details</UBadge
-                >
-                <template #content>
-                  <div class="p-4">
-                    {{ row.original.comment }}
-                  </div>
-                </template>
-              </UPopover>
-            </template>
-            <template v-else>
-              {{ row.original.value_pretty }}
-            </template>
-          </template>
-        </UTable>
-      </UCard>
-    </template>
-    <template v-else>
-      <h1 class="text-4xl font-bold inline-block">Feature not found!</h1>
-    </template>
+        </template>
+      </UTable>
+    </UCard>
   </div>
 </template>
 

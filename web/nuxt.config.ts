@@ -33,6 +33,19 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   colorMode: { preference: "light" },
 
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "en",
+      },
+    },
+  },
+
+  site: {
+    url: "https://quic-explorer.net",
+    name: "QUIC Explorer",
+  },
+
   runtimeConfig: {
     gitCommitHash: gitCommitHash,
   },
@@ -50,6 +63,6 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/ui"],
-  compatibilityDate: "2026-07-20"
+  modules: ["@nuxt/ui", "@nuxtjs/seo"],
+  compatibilityDate: "2026-07-20",
 });

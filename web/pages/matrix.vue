@@ -22,7 +22,7 @@ const links = [
 ];
 
 useHead({
-  title: "QUIC Explorer | Feature Matrix",
+  title: "Feature Matrix",
 });
 
 const entryLookup = new Map<string, Entry>();

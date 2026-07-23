@@ -14,8 +14,13 @@
     "@iconify-json/lucide": "^1.2.118",
     "@iconify-json/mdi": "^1",
     "@nuxt/ui": "^4.10.0",
+    "@nuxtjs/seo": "^5.3.6",
+    "@unhead/vue": "^3.2.3",
     "nuxt": "^4.5.0",
     "prettier": "^3.9.5",
     "tailwindcss": "^4"
+  },
+  "dependencies": {
+    "@takumi-rs/core": "^2.4.1"
   }
 }

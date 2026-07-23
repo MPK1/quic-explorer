@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const route = useRoute();
-const host = process.server ? useRequestHeaders().host : window.location.host;
+// Canonical <link> tags are handled automatically by @nuxtjs/seo (based on
+// `site.url` in nuxt.config.ts), so no manual useHead() call is needed here.
 
 const citation = getCitation();
 const isFullscreen = useState<boolean>("matrix-fullscreen", () => false);
@@ -21,13 +21,6 @@ const mobileMenuItems = computed(() => [
     target: "_blank",
   },
 ]);
-
-useHead({
-  link: [
-    // We use route.path since we don't use query parameters
-    { rel: "canonical", href: `https://${host}${route.path}` },
-  ],
-});
 </script>
 
 <template>
@@ -95,8 +88,9 @@ useHead({
 
 <style lang="postcss">
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 15px;
   background-color: #f4f4f5;
   margin: 0;

@@ -155,7 +155,7 @@ const featureFilteredRows = computed(() =>
 );
 
 useHead({
-  title: "QUIC Explorer | Implementations",
+  title: "Implementations",
 });
 </script>
 
