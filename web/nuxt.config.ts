@@ -57,6 +57,13 @@ export default defineNuxtConfig({
     name: "QUIC Explorer",
   },
 
+  // Every route uses a single static og:image (see app.vue) — the dynamic
+  // per-route OG image generator is unused, so disable it rather than
+  // silence its font-resolution warnings.
+  ogImage: {
+    enabled: false,
+  },
+
   runtimeConfig: {
     gitCommitHash: gitCommitHash,
   },
