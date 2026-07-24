@@ -175,11 +175,9 @@ if (isLegacyUrl) {
         </li>
         <li>
           <span class="label" v-if="feat.value_meta">Value Meta:</span>
-          <pre
-            v-if="feat.value_meta"
+          <pre v-if="feat.value_meta"
             class="ring-gray-300 ring-inset ring-1 text-gray-700 bg-gray-50 rounded-md text-xs p-2"
-            v-html="JSON.stringify(feat.value_meta, null, 2)"
-          ></pre>
+            v-html="JSON.stringify(feat.value_meta, null, 2)"></pre>
         </li>
       </ul>
 
@@ -192,8 +190,7 @@ if (isLegacyUrl) {
             </UBadge>
             by
             <UBadge class="badge" color="neutral" variant="subtle">
-              {{ feat.created_by.split("<")[0].trim() || "?" }}
-            </UBadge>
+              {{ feat.created_by.split("<")[0].trim() || "?" }} </UBadge>
           </li>
           <li v-if="updated_at && feat.updated_by">
             <span class="label">Last update:</span>
@@ -202,8 +199,7 @@ if (isLegacyUrl) {
             </UBadge>
             by
             <UBadge class="badge" color="neutral" variant="subtle">
-              {{ feat.updated_by.split("<")[0].trim() || "?" }}
-            </UBadge>
+              {{ feat.updated_by.split("<")[0].trim() || "?" }} </UBadge>
           </li>
         </ul>
       </template>
@@ -215,48 +211,30 @@ if (isLegacyUrl) {
           <h2 class="text-2xl font-bold inline-block">Entries</h2>
         </div>
       </template>
-      <UTable
-        v-model:sorting="sorting"
-        :data="relevant_entries"
-        :columns="tableColumns"
-      >
+      <UTable v-model:sorting="sorting" :data="relevant_entries" :columns="tableColumns">
         <template #implementation_name-cell="{ row }">
-          <NuxtLink
-            :to="'/implementations/' + row.original.implementation_slug"
-          >
+          <NuxtLink :to="'/implementations/' + row.original.implementation_slug">
             {{ row.original.implementation_name }}
           </NuxtLink>
         </template>
         <template #source-cell="{ row }">
-          {{ row.original.source }}
-          <UTooltip :text="row.original.source_url" :content="{ side: 'left' }">
-            <UButton
-              v-if="row.original.source_url"
-              class="ml-2"
-              icon="i-mdi-link-variant"
-              size="xs"
-              color="neutral"
-              variant="outline"
-              :to="row.original.source_url"
-              target="_blank"
-            />
+          <UTooltip v-if="row.original.source_url" :text="row.original.source_url" :content="{ side: 'left' }">
+            <UButton class="ml-2" icon="i-mdi-link-variant" size="xs" color="neutral" variant="outline"
+              :to="row.original.source_url" target="_blank">{{ row.original.source }}</UButton>
           </UTooltip>
         </template>
         <template #last_update-cell="{ row }">
-          <UTooltip
-            :text="'by ' + row.original.last_update_by"
-            :content="{ side: 'right' }"
-          >
-            {{ row.original.last_update }}
+          <UTooltip :text="'by ' + row.original.last_update_by" :content="{ side: 'right' }">
+            <UBadge class="badge ml-2" color="neutral" variant="outline">
+              {{ row.original.last_update }}
+            </UBadge>
           </UTooltip>
         </template>
         <template #value-cell="{ row }">
           <template v-if="row.original.comment">
             <UPopover mode="hover">
-              <span>{{ row.original.value_pretty }}</span
-              ><UBadge class="badge ml-2" color="neutral" variant="solid"
-                >Hover for more details</UBadge
-              >
+              <span>{{ row.original.value_pretty }}</span>
+              <UBadge class="badge ml-2" color="neutral" variant="solid">Hover for more details</UBadge>
               <template #content>
                 <div class="p-4">
                   {{ row.original.comment }}
