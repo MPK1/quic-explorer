@@ -179,6 +179,13 @@ const matrix = computed(() =>
         />
       </div>
     </template>
+    <p v-if="!isFullscreen" class="px-3 pt-3 text-sm text-gray-600 dark:text-gray-300">
+      This matrix cross-references every tracked implementation against every
+      tracked feature, so you can compare
+      {{ implementations.length }} QUIC implementations across
+      {{ features.length }} features at a glance. Use the selectors below to
+      focus on a subset of either axis.
+    </p>
     <div v-if="!isFullscreen" class="flex flex-wrap items-start gap-4 px-3 py-3.5">
       <div class="min-w-[220px] flex-1">
         <div class="mb-1 flex items-center justify-between">

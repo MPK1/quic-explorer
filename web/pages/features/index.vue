@@ -64,6 +64,12 @@ useSchemaOrg([
 <template>
   <div class="view">
     <UBreadcrumb :items="links" class="mb-4" />
+    <p class="mb-4">
+      This table lists {{ features.length }} trackable QUIC protocol features
+      and extensions, each with a short key, its value type, and a
+      description. Click a row to see which implementations support it and
+      the sourced entries behind that data.
+    </p>
     <FilterableTable
       title="Features"
       :columns="columns"

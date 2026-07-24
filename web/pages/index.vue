@@ -44,7 +44,13 @@ useSchemaOrg([
 <template>
   <div class="view">
     <div class="w-full block">
-      <img class="w-1/6 m-auto mb-6" src="/favicon.png" />
+      <img
+        class="w-1/6 m-auto mb-6"
+        src="/favicon.png"
+        alt="QUIC Explorer logo"
+        width="1024"
+        height="1024"
+      />
     </div>
 
     <h1 class="text-4xl font-bold text-center mb-6">
@@ -59,7 +65,7 @@ useSchemaOrg([
       right now. <br />We are working on it and will add more features soon™️.
     </p>
 
-    <h1 class="text-xl font-bold my-2">How To Use</h1>
+    <h2 class="text-xl font-bold my-2">How To Use</h2>
     <p class="mb-4">
       If you want to browse a list of available open-source QUIC
       implementations, check out the
@@ -87,7 +93,7 @@ useSchemaOrg([
       .
     </p>
 
-    <h1 class="text-xl font-bold my-2">Contribution</h1>
+    <h2 class="text-xl font-bold my-2">Contribution</h2>
     <p class="mb-4">
       If you want to contribute, feel free to check out the
       <UButton

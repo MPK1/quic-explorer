@@ -224,7 +224,15 @@ if (isLegacyUrl) {
         </div>
       </template>
 
-      <img v-if="impl.logo_url" id="logo" :src="impl.logo_url" />
+      <img
+        v-if="impl.logo_url"
+        id="logo"
+        :src="impl.logo_url"
+        :alt="impl.name + ' logo'"
+        loading="lazy"
+        width="240"
+        height="140"
+      />
       <h2 class="text-xl mb-2">General Information</h2>
       <ul class="meta">
         <li>
@@ -325,7 +333,7 @@ if (isLegacyUrl) {
       <UCard class="mt-8">
         <template #header>
           <div class="flex justify-between">
-            <h1 class="text-2xl font-bold inline-block">Feature Information</h1>
+            <h2 class="text-2xl font-bold inline-block">Feature Information</h2>
           </div>
         </template>
         <UTable
@@ -415,6 +423,7 @@ if (isLegacyUrl) {
   max-width: 40%;
   min-height: 80px;
   max-height: 140px;
+  object-fit: contain;
   top: 0;
   right: 0;
   clear: both;

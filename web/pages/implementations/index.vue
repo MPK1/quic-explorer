@@ -171,6 +171,13 @@ useSchemaOrg([
 <template>
   <div class="view">
     <UBreadcrumb :items="links" class="mb-4" />
+    <p class="mb-4">
+      This table lists {{ implementations.length }} open-source QUIC
+      implementations, with their maintainer, implementation language, and a
+      link to the source repository. Use the search box or the feature filter
+      below to narrow the list, or click a row for its full feature-support
+      details.
+    </p>
     <div
       v-if="filters.length > 0"
       class="px-3 py-2 border-y border-gray-200 dark:border-gray-700"

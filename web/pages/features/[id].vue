@@ -212,7 +212,7 @@ if (isLegacyUrl) {
     <UCard class="mt-8">
       <template #header>
         <div class="flex justify-between">
-          <h1 class="text-2xl font-bold inline-block">Entries</h1>
+          <h2 class="text-2xl font-bold inline-block">Entries</h2>
         </div>
       </template>
       <UTable
