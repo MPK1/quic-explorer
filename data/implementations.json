@@ -11,7 +11,7 @@
             "uuid": "a6bad9d2-e0d8-4fcb-950c-2ca2f1dac7dc",
             "slug": "lsquic",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "quiche",
@@ -23,7 +23,7 @@
             "uuid": "94fb975a-d0b0-489c-bfe2-10aca68059bc",
             "slug": "quiche",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "quic-go",
@@ -31,11 +31,13 @@
             "language": "Go",
             "license": "MIT",
             "repo_url": "https://github.com/quic-go/quic-go",
-            "logo_url": "https://raw.githubusercontent.com/quic-go/quic-go/master/docs/quic.png",
+            "logo_url": "https://raw.githubusercontent.com/quic-go/quic-go/refs/heads/master/assets/logo.svg",
             "uuid": "9b99e30c-e06c-408e-bf63-b80b0cb36f57",
             "slug": "quic-go",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>",
+            "updated_at": "2026-07-24T12:41:00.000000+00:00",
+            "updated_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "aioquic",
@@ -47,7 +49,7 @@
             "uuid": "3f191b57-0a78-4eba-be69-e8234dab28dc",
             "slug": "aioquic",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "MsQuic",
@@ -59,7 +61,7 @@
             "uuid": "6f6a0913-234e-4c23-b079-3268937ab152",
             "slug": "msquic",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "mvfst",
@@ -71,7 +73,7 @@
             "uuid": "473dfd8e-00b3-44fd-89a6-ada0466e7f67",
             "slug": "mvfst",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "Neqo",
@@ -83,7 +85,7 @@
             "uuid": "20a6c114-119a-42e0-aee3-0607802c0c3c",
             "slug": "neqo",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "ngtcp2",
@@ -94,7 +96,7 @@
             "uuid": "29b60869-b397-4915-a336-a46dffdeff6b",
             "slug": "ngtcp2",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "NGINX",
@@ -106,7 +108,7 @@
             "uuid": "d2278714-aabe-4148-b53c-3f16eee61fc2",
             "slug": "nginx",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "picoquic",
@@ -118,7 +120,7 @@
             "uuid": "e9e00650-746d-48de-bf06-9ffee0d97f5d",
             "slug": "picoquic",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "Quinn",
@@ -130,7 +132,7 @@
             "uuid": "a68b8dad-d92e-47f2-ba8b-b02ec44ea67a",
             "slug": "quinn",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "s2n-quic",
@@ -142,7 +144,7 @@
             "uuid": "6bb045e6-0357-4777-96ae-75a8666b4b49",
             "slug": "s2n-quic",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "XQUIC",
@@ -154,7 +156,7 @@
             "uuid": "1021975e-a79d-46b2-83d2-deaf478b22dc",
             "slug": "xquic",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "quicly",
@@ -166,7 +168,7 @@
             "uuid": "000551a6-2cef-4dbf-8013-1aab4f3a752f",
             "slug": "quicly",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "Google QUICHE",
@@ -178,7 +180,7 @@
             "uuid": "a03a7418-9a17-462d-8c80-3271d75574ec",
             "slug": "google-quiche",
             "created_at": "2024-01-22T12:30:00.000000+00:00",
-            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+            "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
         },
         {
             "name": "TQUIC",

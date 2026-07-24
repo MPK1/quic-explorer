@@ -312,6 +312,44 @@
             "source_url": "https://github.com/mozilla/neqo/blob/76673b127251c90ad6250de7a0a7400ddd4661f1/neqo-transport/src/frame.rs#L65",
             "created_at": "2026-07-24T09:30:00.000000+00:00",
             "created_by": "Marcel Kempf <marcel.kempf@tum.de>"
+        },
+        {
+            "implementation_uuid": "9b99e30c-e06c-408e-bf63-b80b0cb36f57",
+            "feature_uuid": "39cb9235-1110-49f4-8750-4fbbbf1cb5c2",
+            "value": [
+                "CUBIC"
+            ],
+            "source": "Repo",
+            "source_url": "https://github.com/quic-go/quic-go/tree/579ee19d5b54c4f9320ffca668113c3513a138e5/internal/congestion",
+            "created_at": "2026-07-24T12:41:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "implementation_uuid": "9b99e30c-e06c-408e-bf63-b80b0cb36f57",
+            "feature_uuid": "72cf9764-473d-43b7-b05a-4e64be6c1fae",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/quic-go/quic-go/blob/579ee19d5b54c4f9320ffca668113c3513a138e5/README.md?plain=1#L15-L21",
+            "created_at": "2026-07-24T12:41:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "implementation_uuid": "9b99e30c-e06c-408e-bf63-b80b0cb36f57",
+            "feature_uuid": "e0608091-b2ab-4126-ad95-a6ef40ff1899",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/quic-go/quic-go/blob/579ee19d5b54c4f9320ffca668113c3513a138e5/README.md?plain=1#L15-L21",
+            "created_at": "2026-07-24T12:41:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
+        },
+        {
+            "implementation_uuid": "9b99e30c-e06c-408e-bf63-b80b0cb36f57",
+            "feature_uuid": "da6ba40d-3ae2-49b1-a772-876149a2f0ab",
+            "value": true,
+            "source": "Repo",
+            "source_url": "https://github.com/quic-go/quic-go/blob/579ee19d5b54c4f9320ffca668113c3513a138e5/README.md?plain=1#L13",
+            "created_at": "2026-07-24T12:41:00.000000+00:00",
+            "created_by": "Marcel Kempf <kempfm@net.in.tum.de>"
         }
     ]
 }
